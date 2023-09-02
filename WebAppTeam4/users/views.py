@@ -29,8 +29,10 @@ class RegisterView(View):
         if form.is_valid():
             form.save()
             username = form.cleaned_data['username']
+
             messages.success(request, f'Hello {username}. Your account was saved successfully')
             return redirect(to='users:login')
+
 
         return render(request, self.template_name, {'form': form})
 
@@ -40,7 +42,8 @@ def loginUser(request):
         return redirect('main')
 
     if request.method == 'POST':
-        user = authenticate(username=request.POST['username'], password=request.POST['password'])
+        user = authenticate(
+            username=request.POST['username'], password=request.POST['password'])
         if user is None:
             messages.error(request, 'Username or password didn\'t match')
             return redirect(to='users:login')
@@ -54,7 +57,9 @@ def loginUser(request):
 @login_required
 def logoutUser(request):
     logout(request)
+
     return render(request, 'users/logout.html')
+
 
 
 class ResetPasswordView(SuccessMessageMixin, PasswordResetView):

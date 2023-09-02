@@ -5,7 +5,8 @@ from django.http import HttpResponse
 
 from .forms import ContactForm
 from .models import Contact
-
+from django.views.generic.base import TemplateView, View
+from django.views.generic.edit import CreateView, DeleteView, UpdateView
 
 # Create your views here.
 
@@ -32,3 +33,4 @@ def editcontact(request, contact_id):
 #add contact_id in params
 def delete_contact(request):
     return render(request, "contacts/delete.html")
+
