@@ -1,0 +1,15 @@
+{%extends 'contacts/base.html' %}
+
+{% block content %}
+    <nav style="margin-bottom: 20px; border-bottom: 2px solid; padding-left: 30px">
+        {% if user.is_authenticated %}
+            <ul>
+                <li><a href="{% url 'contacts:addcontact' %}" role="button">Add contact</a></li>
+                <li><a href="{% url 'contacts:editcontact' 1 %}" role="button">Edit contact</a></li>
+                <li><a href="{% url 'contacts:contacts' %}" role="button">Contact list</a></li>
+            </ul>
+        {% endif %}
+    
+    </nav>
+
+{% endblock %}

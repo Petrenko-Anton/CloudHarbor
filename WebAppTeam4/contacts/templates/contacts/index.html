@@ -1,0 +1,18 @@
+{%extends 'contacts/base.html' %}
+
+{% block content %}
+            <div class="col-md-5">
+                <p>
+                    <!-- {% if not user.is_authenticated %} -->
+                    <a href="users/registration/">Register</a>
+                    <a href="users/login/">Login</a>
+                    <a href="contactbook/">Contact book</a>
+                    <a href="notes/notes/">Notes</a>
+                    <a href="files/files/">File Storage</a>
+                    <a href="news/news/">Your News</a>
+                    <a href="users/logout/">Logout</a>
+                    <!-- {% else %} -->
+                    <!-- {% endif %} -->
+                </p>
+            </div>
+{% endblock %}

@@ -1,0 +1,106 @@
+html {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+  
+body {
+  font-family: 'Arial Narrow', Arial, sans-serif;
+  font-size: 16px;
+  background: #fefefe;
+  margin-bottom: 60px;
+  }
+  
+.container {
+  min-width: 320px;
+  height: 100%;
+  background: var(--main-bg-color);
+  }
+
+.navbar {
+  background: var(--navbar-color);
+  font-weight: bold;
+  padding: 16px;
+  margin: 0;
+  border: 0.5px solid #fefefe;
+}
+
+.navbar-brand {
+  width: 50%;
+  text-align: left;
+}
+
+.menu-link {
+  padding: 8px;
+}
+
+.menu-link :hover {
+  color: var(--hover-link-color);
+}
+
+.main-slider {
+  max-height: 500px;
+  width: auto;
+  text-align: center;
+}
+
+.main-slider img {
+  height: 500px;
+  width: auto;
+}
+
+.short-info-block {
+  min-height: 300px;
+}
+
+footer {
+  text-align: center;
+  background-color: #E6E6FA;
+}
+
+a {
+  color: var(--link-color);
+  text-decoration: none;
+}
+
+a :hover {
+  color: var(--link-color);
+  cursor: pointer;
+  background-color: transparent;
+}
+
+.fa {
+  font-size: 16px;
+}
+
+.main-content {
+  background: var(--main-bg-color);
+  min-height: 500px;
+}
+
+.banner-block {
+  min-height: 200px;
+  border: 1px #000 solid;
+}
+
+.sign-up-button {
+  background-color: #E6E6FA;
+  padding: 16px;
+  border: 1px solid #f4f4f4;
+  width: 200px;
+  border-radius: 8px;
+  margin: 60px auto;
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.sign-up-button :hover {
+  background-color: #e2e2e2;
+  border: 1px solid #f0f0f0;
+  cursor: pointer;
+}
+
+.content-text {
+  padding: 24px 40px;
+}

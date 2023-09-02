@@ -1,0 +1,61 @@
+{%extends 'contacts/base.html' %}
+
+{% block content %}
+    <!-- name = CharField(min_length=3, max_length=25, required=True, widget=TextInput())
+    last_name = CharField(min_length=3, max_length=25, required=True, widget=TextInput())
+    birth_date = DateField();
+    phone = CharField(min_length=3, max_length=25, required=True, widget=TextInput())
+    email = EmailField()
+    description = CharField(widget=TextArea()) -->
+
+<form method="POST" action="{% url 'contacts:add_contact' %}">
+    {% csrf_token %}
+    <div style="padding: 10px">
+        <label> Name:
+            {{ form.name }}
+        </label>
+        <span>{{ form.errors.name }}</span>
+    </div>
+
+    <div style="padding: 10px">
+        <label> Last name:
+            {{ form.last_name }}
+        </label>
+        <span>{{ form.errors.last_name }}</span>
+    </div>
+
+    <div style="padding: 10px">
+        <label> Date of Birth:
+            {{ form.birth_date}}
+        </label>
+        <span>{{ form.errors.birth_date }}</span>
+    </div>
+
+    <div style="padding: 10px">
+        <label> Phone:
+            {{ form.phone }}
+        </label>
+        <span>{{ form.errors.phone }}</span>
+    </div>
+
+    <div style="padding: 10px">
+        <label> Email:
+            {{ form.email}}
+        </label>
+        <span>{{ form.errors.email }}</span>
+    </div>
+
+    <div style="padding: 10px">
+        <label> Description:
+            {{ form.description }}
+        </label>
+        <span>{{ form.errors.description }}</span>
+    </div>
+
+    <div class="grid">
+        <button type="submit" >Submit</button>
+        <button type="reset" class="secondary">Reset</button>
+    </div>
+</form>
+
+{% endblock %}
