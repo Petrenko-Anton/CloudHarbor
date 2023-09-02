@@ -13,22 +13,24 @@ body {
   
 .container {
   min-width: 320px;
+  max-width: 1200px;
   height: 100%;
-  margin-right: auto;
-  margin-left: auto;
-  padding-left: 15px;
-  padding-right: 15px;
   background: var(--main-bg-color);
+  padding: 0;
   }
 
 .navbar {
   background: var(--navbar-color);
+  width: auto;
   font-weight: bold;
   padding: 16px;
+  margin: 0;
+  border: 0.5px solid #fefefe;
 }
 
 .navbar-brand {
   width: 50%;
+  text-align: left;
 }
 
 .menu-link {
@@ -56,6 +58,9 @@ body {
 
 footer {
   text-align: center;
+  background-color: #E6E6FA;
+  position: relative;
+  width: auto;
 }
 
 a {
@@ -63,10 +68,47 @@ a {
   text-decoration: none;
 }
 
+a:hover {
+  color: var(--link-color);
+  cursor: pointer;
+  background-color: transparent;
+}
+
 .fa {
-  font-size: 24px;
+  font-size: 16px;
 }
 
 .main-content {
   background: var(--main-bg-color);
+  min-height: 500px;
+}
+
+.banner-block {
+  min-height: 200px;
+  background-color: #fff;
+  padding: 30px;
+  border: 1px solid #E6E6FA;
+}
+
+.sign-up-div {
+  background-color: #E6E6FA;
+  border: 1px solid #f4f4f4;
+  border-radius: 8px;
+  padding: 16px;
+  margin: 60px auto;
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+  width: 190px;
+}
+
+.sign-up-div:hover {
+  color: #ffffff;
+  cursor: pointer;
+  background-color: #fefefe;
+  border: 1px solid #E6E6FA;
+}
+
+.content-text {
+  padding: 24px 40px;
 }
