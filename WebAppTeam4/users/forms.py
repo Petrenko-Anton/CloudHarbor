@@ -4,10 +4,10 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
 
 class RegisterForm(UserCreationForm):
-    username = CharField(max_length=16, required=True, widget=TextInput(attrs={'class': "form-control"}))
-    first_name = CharField(max_length=25, widget=TextInput(attrs={'class': "form-control"}))
-    last_name = CharField(max_length=25, widget=TextInput(attrs={'class': "form-control"}))
-    email = EmailField(max_length=50, required=True, widget=EmailInput(attrs={'class': "form-control"}))
+    username = CharField(max_length=100, required=True, widget=TextInput(attrs={'class': "form-control"}))
+    first_name = CharField(max_length=100, widget=TextInput(attrs={'class': "form-control"}))
+    last_name = CharField(max_length=100, widget=TextInput(attrs={'class': "form-control"}))
+    email = EmailField(max_length=100, required=True, widget=EmailInput(attrs={'class': "form-control"}))
     password1 = CharField(max_length=12, min_length=6, required=True,
                           widget=PasswordInput(attrs={'class': "form-control"}))
     password2 = CharField(max_length=12, min_length=6, required=True,
