@@ -33,10 +33,11 @@
                 {% endif %}
             </nav>
             <div class="main-content">
+                {% block content %}
                 {% if not user.is_authenticated %}
                     <div class="banner-block">
-                        <div class="sign-up-button">
-                            <a class="navbar-item" href="/users/signup">Sign up</a>
+                        <div class="sign-up-div">
+                            <a class="sign-up-button" href="/users/signup">Sign up</a>
                         </div>
                     </div>
                     <div class="content-text">
@@ -54,11 +55,13 @@
                             voluptas nulla pariatur?"</p>
                     </div>
                 {% else %}
-                    {% block content %} {% endblock %}
+                    <h2>Welcome, <b>{{ user.username }}!</b></h2>
                 {% endif %}
+                {% endblock %}
             </div>
             <footer>Created by Code Breeze Squad, 2023</footer>
         </div>    
      </body>
 
+</html>
 </html>
