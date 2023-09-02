@@ -18,7 +18,7 @@ class RegisterView(View):
 
     def dispatch(self, request, *args, **kwargs):
         if request.user.is_authenticated:
-            return redirect(to='quotes:main')
+            return redirect(to='contacts:main')
         return super().dispatch(request, *args, **kwargs)
 
     def get(self, request):
@@ -29,7 +29,8 @@ class RegisterView(View):
         if form.is_valid():
             form.save()
             username = form.cleaned_data['username']
-            messages.success(request, f'Hello {username}. Your account was saved successfully')
+            messages.success(
+                request, f'Hello {username}. Your account was saved successfully')
             return redirect(to='users:signin')
 
         return render(request, self.template_name, {'form': form})
@@ -40,7 +41,8 @@ def login_user(request):
         return redirect('main')
 
     if request.method == 'POST':
-        user = authenticate(username=request.POST['username'], password=request.POST['password'])
+        user = authenticate(
+            username=request.POST['username'], password=request.POST['password'])
         if user is None:
             messages.error(request, 'Username or password didn\'t match')
             return redirect(to='users:login')
@@ -54,7 +56,7 @@ def login_user(request):
 @login_required
 def logout_user(request):
     logout(request)
-    return redirect(to='quotes:main')
+    return redirect(to='contacts:main')
 
 
 class ResetPasswordView(SuccessMessageMixin, PasswordResetView):

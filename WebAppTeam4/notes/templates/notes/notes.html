@@ -1,9 +1,8 @@
 {%extends 'contacts/base.html' %}
 
 {% block content %}
-main class="container">
+<main class="container">
     <nav style="margin-bottom: 20px; border-bottom: 2px solid; padding-left: 30px">
-        {% if user.is_authenticated %}
     <ul>
         <li><a href="{% url 'notes:note' %}" role="button">Add note</a></li>
         <li><a href="{% url 'notes:tag' %}" role="button">Add Tag</a></li>
@@ -21,9 +20,6 @@ main class="container">
         </li>
     </ul>
     {% endfor %}
-    {% else %}
-
-    {% endif %}
     </nav>
 
 
