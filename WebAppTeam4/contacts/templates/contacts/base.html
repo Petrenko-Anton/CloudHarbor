@@ -10,29 +10,17 @@
           integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     {% load static %}
     <link rel="stylesheet" href = {% static 'contacts/style.css' %}>
-    <title>###ТУТ НАЗВА АПЛІКУХИ###</title>
+    <title>Contacts</title>
 </head>
 <body>
     <div class="container">
         <div class="row header-box">
             <div class="col-md-7">
                 <h1>
-                    <a href="/" style="text-decoration: none">###ТУТ НАЗВА АПЛІКУХИ###</a>
+                    <a href="/" style="text-decoration: none"> 
+                        Online Web Assistant !
+                    </a>
                 </h1>
-            </div>
-            <div class="col-md-5">
-                <p>
-                    {% if not user.is_authenticated %}
-                    <a href="/users/registration">Register</a>
-                    <a href="/users/login">Login</a>
-                    {% else %}
-                    <a href="/contacts">Contact book</a>
-                    <a href="/notes">Notes</a>
-                    <a href="/files">File Storage</a>
-                    <a href="/news">Your News</a>
-                    <a href="/users/logout">Logout</a>
-                    {% endif %}
-                </p>
             </div>
         </div>
     </div>
@@ -42,17 +30,14 @@
         <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
         {% endfor %}
     </ul>
-{% endif %}
+    {% endif %}
     {% block content %} {% endblock %}
     <footer class="footer">
         <div class="container">
-
             <p class="copyright">
-                Сreated by ###ТУТ НАЗВА КОМАНДИ###
+                Created by Group#4 (Python Web Development Team)
             </p>
-
         </div>
     </footer>
-
 </body>
 </html>
