@@ -1,11 +1,11 @@
 {% extends "contacts/base.html" %}
 
 {% block content %}
-   <h3>Edit Contact</h3>
+   <h3>Edit Contact {{ contact.first_name }} {{ contact.last_name }}</h3>
    {%if form.errors and form.non_field_errors %}
    <span class="alert alert-danger" role="alert">{{form.non_field_errors}}</span>
    {% endif %}
-   <form  method='post' action="{% url 'contacts:editcontact' 1 %}">
+   <form  method='post' action="{% url 'contacts:editcontact' contact.id %}">
       {% csrf_token %}
       <div class="mb-3">
          <label  class="form-label">First name
