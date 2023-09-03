@@ -8,6 +8,7 @@
             <li>
                 {{ contact.first_name }} {{ contact.last_name }} {{ contact.email }} {{ contact.phone }} {{ contact.birth_day }}
                 <a href="{% url 'contacts:editcontact' contact.id %}" role="button" class="contrast"> Edit contact </a>
+                <a href="{% url 'contacts:deletecontact' contact.id %}" role="button" class="contrast"> Delete contact </a>
             </li>
         </ul>
         {% endfor %}

@@ -6,7 +6,6 @@ from django.http import HttpResponse
 from .forms import ContactForm
 from .models import Contact
 from django.views import View
-from django.views.generic.edit import CreateView, DeleteView, UpdateView
 
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
@@ -67,6 +66,7 @@ def detailcontact(request):
 # add contact_id in params
 
 
+@method_decorator(login_required, name="dispatch")
 class editcontact(View):
     template_name = "contacts/edit.html"
     form_class = ContactForm
@@ -106,15 +106,25 @@ class editcontact(View):
 #     return render(request, "contacts/edit.html", {"form": ContactForm(), "contact": contact})
 
 # add contact_id in params
+@method_decorator(login_required, name="dispatch")
+class deletecontact(View):
+    template_name = "contacts/contact_list.html"
+
+    def get(self, request, contact_id):
+        Contact.objects.get(pk=contact_id).delete()
+        contacts = (
+            Contact.objects.filter(user=request.user).all()
+            if request.user.is_authenticated
+            else []
+        )
+        return render(request, self.template_name, {"contacts": contacts})
 
 
-def delete_contact(request):
-    return render(request, "contacts/delete.html")
-
-
+# from Django documentation
 # b = Blog.objects.get(pk=1)
 # # This will delete the Blog and all of its Entry objects.
 # b.delete()
+
 
 @method_decorator(login_required, name="dispatch")
 class contact_list(View):
