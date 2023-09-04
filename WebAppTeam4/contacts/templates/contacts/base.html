@@ -12,55 +12,48 @@
         />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         {% load static %}
-        <link rel="stylesheet" type="text/css" href="{% static 'contacts/colors.css' %}">
-        <link rel="stylesheet" type="text/css" href="{% static 'contacts/style.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'styles/style.css' %}">
     </head>
     <body>
-        <div class="container">
+        <div class="header-row">
             <nav class="navbar">
                 <a class="navbar-brand" href="/">
-                    <img src="{% static 'img/logo.png' %}" width="30" height="30" class="d-inline-block align-top">
+                    <img src="{% static 'img/logo.png' %}" width="40" height="40" class="d-inline-block align-top">
                     CloudHarbor
                 </a>
                 {% if not user.is_authenticated %}
-                    <a class="navbar-item" href="/users/login"><i class='fa fa-sign-in'> Login</i></a>
+                    <a class="navbar-item" href="/users/login"><svg xmlns="http://www.w3.org/2000/svg" height="1.25em" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><style>svg{fill:#ffffff}</style><path d="M217.9 105.9L340.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L217.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1L32 320c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM352 416l64 0c17.7 0 32-14.3 32-32l0-256c0-17.7-14.3-32-32-32l-64 0c-17.7 0-32-14.3-32-32s14.3-32 32-32l64 0c53 0 96 43 96 96l0 256c0 53-43 96-96 96l-64 0c-17.7 0-32-14.3-32-32s14.3-32 32-32z"/></svg> Вхід</a>
                 {% else %}
-                    <a class="navbar-item" href="/contacts" role="button">Contacts</a>
-                    <a class="navbar-item" href="/notes/notes/" role="button">Notes</a>
-                    <a class="navbar-item" href="/files" role="button">Cloud</a>
-                    <a class="navbar-item" href="/news" role="button">News</a>
-                    <a class="navbar-item" href="{% url 'users:logout' %}" role="button">Logout</a>
+                    <a class="navbar-item" href="/contacts" role="button">Контакти</a>
+                    <a class="navbar-item" href="/notes/notes/" role="button">Нотатки</a>
+                    <a class="navbar-item" href="/files/files" role="button">Файли</a>
+                    <a class="navbar-item" href="/news/news" role="button">Новини</a>
+                    <a class="navbar-item" href="{% url 'users:logout' %}"><svg xmlns="http://www.w3.org/2000/svg" height="1.25em" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><style>svg{fill:#ffffff}</style><path d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z"/></svg></a>
                 {% endif %}
             </nav>
+        </div>
+        <div class="container">
+            
             <div class="main-content">
                 {% block content %}
                 {% if not user.is_authenticated %}
-                    <div class="banner-block">
-                        <div class="sign-up-div">
-                            <a class="sign-up-button" href="/users/signup">Sign up</a>
-                        </div>
-                    </div>
-                    <div class="content-text">
-                        <p>"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium 
-                            doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore 
-                            veritatis et quasi architecto beatae vitae dicta sunt explicabo. 
-                            Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, 
-                            sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. 
-                            Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, 
-                            adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et 
-                            dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum 
-                            exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi 
-                            consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit 
-                            esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo 
-                            voluptas nulla pariatur?"</p>
+                    <div class="welcome-block">
+                        <h2>Ви ще не з нами?</b></h2>
+                        <h2>І скільки я буду чекати??</h2>
+                        <img src="{% static 'img/not-welcome.gif' %}" width="400" height="400" class="d-inline-block align-top">
                     </div>
                 {% else %}
-                    <h2>Welcome, <b>{{ user.username }}!</b></h2>
+                    <div class="welcome-block">
+                        <h2>Вітаю, <b>{{ user.username }}!</b></h2>
+                        <h2>Йой, ви нічого ще не зробили. Виправте це!</h2>
+                        <img src="{% static 'img/welcome.gif' %}" width="400" height="400" class="d-inline-block align-top">
+                    </div>          
                 {% endif %}
                 {% endblock %}
             </div>
-            <footer>Created by Code Breeze Squad, 2023</footer>
+            
         </div>    
+        <footer>Створено командою CodeBreezeSquad, 2023</footer>
      </body>
 
 </html>

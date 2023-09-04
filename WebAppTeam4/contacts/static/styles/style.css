@@ -1,0 +1,139 @@
+@import url(colors.css);
+@import url(text.css);
+@import url(navbar.css);
+@import url(forms.css);
+@import url(buttons.css);
+
+
+html {
+  display: flex;
+  flex-direction: column;
+  height: 90%;
+  margin: 0;
+  padding: 0;
+}
+  
+body {
+  font-size: 16px;
+  background: #ffffff;
+  margin-bottom: 60px;
+  height: 100%;
+  }
+
+.container {
+  min-width: 320px;
+  max-width: 1300px;
+  min-height: 100%;
+  background: #ffffff;
+  padding: 0;
+}
+
+.header-row {
+  padding: 0% 5%;
+  background-color: var(--navbar-bg);
+}
+
+footer {
+  text-align: center;
+  vertical-align: middle;
+  background-color: var(--footer-bg);
+  color: var(--footer-color);
+  height:40px;
+  width:100%;
+  flex: 0 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.fa .fa-solid{
+  font-size: 18px;
+}
+
+.main-content {
+  background: var(--content-block);
+  min-height: 820px;
+  padding: 24px 32px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+
+.welcome-block {
+  padding: 0;
+  margin-left: 5%;
+  margin-top: 8%;
+  text-align: center;
+}
+
+.banner-block {
+  min-height: 320px;
+  background-image: url("../img/slider/slider-1.jpg");
+  padding: 30px;
+  border: 1px solid var(--main-border);
+}
+
+.about-block {
+  padding: 24px 40px;
+}
+
+.row {
+  padding: 16px 0px;
+}
+
+.news-article-img {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.filter-block, .currency-course {
+  padding-bottom: 20px;
+  margin-bottom: 30px;
+  border-bottom: 1px solid var(--border-bottom);
+}
+
+.form-check-input {
+  cursor: pointer;
+}
+
+.form-check-input:checked {
+  background-color: #6EA8FE;
+  border-color: #6EA8FE;
+}
+
+.done-icon {
+  fill: #20C997;
+}
+
+.file-icon, .card-icon {
+  fill: #343A40;
+  padding-left: 12px;
+}
+
+.card-icon:hover, .file-icon:hover {
+  fill: var(--button-color);
+}
+
+.card {
+  height: 200px;
+  margin-bottom: 24px;
+}
+
+.card .btn {
+  height: auto;
+  padding: 0px 4px;
+  cursor: pointer;
+  margin-left: 5px;
+}
+
+.card .btn:hover {
+  background-color: #992c85;
+}
+
+.card-text {
+  padding-bottom: 12px;
+}
+
+.card-body {
+  color: #000;
+}
