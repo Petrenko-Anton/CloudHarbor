@@ -1,0 +1,22 @@
+:root {
+    --main-bg-color: #f6f6f6;
+    --text-color: #000000;   
+    --link-color: #992c85;   
+    --hover-link-color: #992c85;
+
+    --navbar-bg: #343A40;
+    --navbar-color: #ffffff;
+    --navbar-hover: #f6f6f6;
+
+    --content-block: #ffffff;
+
+    --button-color:  #e6e6fa;
+    --button-hover: #ffffff;
+
+    --main-border: #f6f6f6;
+    --border-hover: #e6e6fa;
+    --border-bottom: #cccccc;
+    
+    --footer-bg: #343A40;
+    --footer-color: #ffffff;
+  }
