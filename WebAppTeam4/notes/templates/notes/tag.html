@@ -1,19 +1,26 @@
 {% extends "contacts/base.html" %}
 
 {% block content %}
-
-<form method="POST" action="{% url 'notes:tag' %}">
-    {% csrf_token %}
-    <div style="padding: 10px">
-        <label>Enter the tag name:
-            {{form.name}}
-        </label>
-        <span>{{ form.errors.name }}</span>
+<a href="/notes/notes" role="button">
+    <svg class="file-icon" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512"><path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg>
+    До списку нотатків</a>
+<div class="form-block">
+    <h2>Додати тег</h2>
+    <br/>
+    <div class="text-center">
+        <form method="POST" action="{% url 'notes:tag' %}">
+            {% csrf_token %}
+            <div style="padding: 10px">
+                <label>Введіть назву тега:
+                    {{form.name}}
+                </label>
+                <span>{{ form.errors.name }}</span>
+            </div>
+            <div class="grid">
+                <button type="submit">Зберегти</button>
+            </div>
+        </form>
     </div>
-    <div class="grid">
-        <button type="submit">Submit</button>
-        <button type="reset" class="secondary">Reset</button>
-    </div>
-</form>
 
+</div>
 {% endblock %}

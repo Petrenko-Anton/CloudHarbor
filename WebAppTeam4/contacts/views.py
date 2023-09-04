@@ -22,7 +22,7 @@ def addcontact(request):
     return render(request, "contacts/addcontact.html", {"form": ContactForm()})
 
 #add contact_id in params
-def detailcontact(request):
+def detailcontact(request, contact_id):
     return render(request, "contacts/detail.html")
 
 #add contact_id in params
@@ -31,6 +31,6 @@ def editcontact(request, contact_id):
     return render(request, "contacts/edit.html", {"form": ContactForm()})
 
 #add contact_id in params
-def delete_contact(request):
+def deletecontact(request, contact_id):
     return render(request, "contacts/delete.html")
 
