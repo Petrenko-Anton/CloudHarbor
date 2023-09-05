@@ -1,0 +1,21 @@
+.form-block {
+    margin: 7% 35%;
+    padding: 20px;
+    background-color: var(--main-bg-color);
+    border-radius: var(--bs-border-radius)!important;
+    box-shadow: 0 .125rem .25rem rgba(0,0,0,.075)!important;
+    width: 355px;
+  }
+
+  .form-block h2 {
+    text-align: center;
+  }
+  
+  .form-control {
+    width: 310px; 
+  }
+  
+  label {
+    padding: 0px 0px 16px 0px;
+  }
+

@@ -1,0 +1,23 @@
+button, .btn {
+    background-color: var(--button-color);
+    border: 1px solid var(--button-color);
+    border-radius: 5px;
+    padding: 8px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    width: 200px;
+  }
+
+  button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 12px auto;
+  }
+  
+  button:hover, .btn:hover {
+    cursor: pointer;
+    background-color: var(--button-hover);
+    border: 1px solid var(--border-hover);
+  }

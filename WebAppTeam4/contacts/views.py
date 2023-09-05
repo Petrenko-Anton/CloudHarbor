@@ -60,7 +60,7 @@ class add_contact(View):
 # add contact_id in params
 
 
-def detailcontact(request):
+def detailcontact(request, contact_id):
     return render(request, "contacts/detail.html")
 
 # add contact_id in params

@@ -1,0 +1,30 @@
+.navbar {
+  background: var(--navbar-bg);
+  width: 100%;
+  position: relative;
+  font-weight: bold;
+  padding: 16px;
+  margin: 0;
+}
+  
+.navbar-brand {
+  width: 50%;
+  text-align: left;
+  font-size: 28px;
+  color: var(--navbar-color);
+  cursor: pointer;
+}
+
+.navbar-brand:hover {
+  color: var(--navbar-color);
+}
+
+.navbar-item {
+  padding: 8px;
+  font-size: 18px;
+  color: var(--navbar-color);
+}
+  
+.navbar-item:hover {
+  color: var(--hover-link-color);
+}
