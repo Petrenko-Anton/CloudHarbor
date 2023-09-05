@@ -6,7 +6,7 @@
   До списку контактів</a>
 <br/>
 <br/>
-<h1>Детальна інфомація про контакт</h1>
+<h1>Детальна інфомація про контакт {{contact.first_name}} {{contact.last_name}}</h1>
 <br/>
 <table class="table table-bordered">
   <thead>
@@ -18,23 +18,23 @@
   <tbody>
     <tr>
       <td>Прізвище</td>
-      <td>Коваль</td>
+      <td>{{contact.last_name}}</td>
     </tr>
     <tr>
       <td>Ім'я</td>
-      <td>Анна</td>
+      <td>{{contact.first_name}}</td>
     </tr>
     <tr>
       <td>Телефон</td>
-      <td>+380667823901</td>
+      <td>{{contact.phone}}</td>
     </tr>
     <tr>
       <td>Пошта</td>
-      <td>annakoval@gmail.com</td>
+      <td>{{contact.email}}</td>
     </tr>
     <tr>
       <td>Дата народження</td>
-      <td>19/01/1987</td>
+      <td>{{contact.birth_day}}</td>
     </tr>
   </tbody>
 </table>
