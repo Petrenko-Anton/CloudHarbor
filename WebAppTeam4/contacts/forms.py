@@ -1,5 +1,5 @@
 
-from django.forms import ModelForm, CharField, TextInput, EmailField, EmailInput, DateField, DateInput
+from django.forms import ModelForm, CharField, TextInput, EmailField, EmailInput, DateField, DateInput, SelectDateWidget
 
 from .models import Contact
 
@@ -14,8 +14,10 @@ class ContactForm(ModelForm):
                        widget=EmailInput(attrs={'class': "form-control"}))
     phone = CharField(max_length=100, widget=TextInput(
         attrs={'class': "form-control"}))
-    birth_date = DateField(required=True, widget=DateInput(
-        attrs={'class': "form-control"}))
+    # birth_date = DateField(required=True, widget=DateInput(
+    #     attrs={'class': "form-control"}))
+    birth_date = DateField(required=True, widget=SelectDateWidget)
+
 ########################################################################################
 #    comment = CharField(max_length=100, widget=TextInput(attrs={'class': "form-control"}))
 # it was commented becasue html does not correspond to this form that is why it does not work if not commented

@@ -6,12 +6,11 @@ from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def main(request):
-    # notes = (
-    #     Note.objects.filter(user=request.user).all()
-    #     if request.user.is_authenticated
-    #     else []
-    # )
-    notes = Note.objects.filter().all()  # FOR DEVELOPMENT
+    notes = (
+        Note.objects.filter(user=request.user).all()
+        if request.user.is_authenticated
+        else []
+    )
     return render(request, "notes/notes.html", {"notes": notes})
 
 
