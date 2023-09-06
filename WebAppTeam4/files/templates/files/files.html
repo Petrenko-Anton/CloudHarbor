@@ -31,4 +31,27 @@
     </table>
     
 </div>
+
+<h1>Your files</h1>
+<div class="row">
+    {% for file in files %}
+    <div class="col-md-4">
+        <div class="card" style="width: 18rem;">
+            <img src="{{media}}{{file.path}}" class="card-img-top" alt="file">
+            <div class="card-body">
+
+                <p class="card-text">{{file.description}}.</p>
+                {% if file.category %}
+                    <p class="card-text">{{file.category}}.</p>
+                {% else %}
+                    <p>Категорія не визначена</p>
+                {% endif %}
+                <a href="{% url 'files:edit' file.id %}" class="btn btn-success">Редагувати</a>
+                <a href="{% url 'files:remove' file.id %}" class="btn btn-danger">Видалити</a>
+
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
 {% endblock %}
