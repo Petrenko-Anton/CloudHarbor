@@ -10,7 +10,7 @@
    {%if form.errors and form.non_field_errors %}
    <span class="alert alert-danger" role="alert">{{form.non_field_errors}}</span>
    {% endif %}
-   <form  method='post' action="{% url 'contacts:editcontact' 1 %}">
+   <form  method='post' action="{% url 'contacts:editcontact' contact.id %}">
       {% csrf_token %}
       <div>
          <label  class="form-label">Ім'я
@@ -37,7 +37,7 @@
          <span>{{form.errors.phone}}</span>
       </div>
       <div>
-         <label  class="form-label">Дата народження
+         <label  class="form-label">Дата народження (yyyy-mm-dd)
             {{ form.birth_date }}
          </label>
          <span>{{form.errors.birth_date}}</span>
