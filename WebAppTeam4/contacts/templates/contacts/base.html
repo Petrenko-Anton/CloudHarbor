@@ -33,7 +33,7 @@
             </nav>
         </div>
         <div class="container">
-            
+
             <div class="main-content">
                 {% block content %}
                 {% if not user.is_authenticated %}
@@ -47,12 +47,12 @@
                         <h2>Вітаю, <b>{{ user.username }}!</b></h2>
                         <h2>Йой, ви нічого ще не зробили. Виправте це!</h2>
                         <img src="{% static 'img/welcome.gif' %}" width="400" height="400" class="d-inline-block align-top">
-                    </div>          
+                    </div>
                 {% endif %}
                 {% endblock %}
             </div>
-            
-        </div>    
+
+        </div>
         <footer>Створено командою CodeBreezeSquad, 2023</footer>
      </body>
 
