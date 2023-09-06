@@ -11,7 +11,6 @@ def main(request):
         if request.user.is_authenticated
         else []
     )
-    # notes = Note.objects.filter().all()  # FOR DEVELOPMENT
     return render(request, "notes/notes.html", {"notes": notes})
 
 
