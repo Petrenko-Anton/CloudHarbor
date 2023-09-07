@@ -2,7 +2,7 @@
 
 <h1>{{note.name}}</h1>
 <p>Description: <b>{{note.description}}</b></p>
-<p>Time of creation: <kbd>{{note.created}}</kbd></p>
+<p>Time of creation: <kbd>{{note.created|date:"y-m-d h:i A"}}</kbd></p>
 {% if note.done %}
 <p>
   Status:

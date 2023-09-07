@@ -33,8 +33,8 @@
       <td>{{contact.email}}</td>
     </tr>
     <tr>
-      <td>Дата народження</td>
-      <td>{{contact.birth_date}}</td>
+      <td>Дата народження (yyyy-mm-dd)</td>
+      <td>{{ contact.birth_date|date:"Y-m-d" }}</td>
     </tr>
   </tbody>
 </table>
