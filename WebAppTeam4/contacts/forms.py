@@ -1,11 +1,14 @@
 
 from django.forms import ModelForm, CharField, TextInput, EmailField, EmailInput, DateField, DateInput, SelectDateWidget
+from datetime import date
 
 from .models import Contact
 
 
 class ContactForm(ModelForm):
-
+    date_range = 70    
+    this_year = date.today().year
+    
     first_name = CharField(max_length=100, widget=TextInput(
         attrs={'class': "form-control"}))
     last_name = CharField(max_length=100, widget=TextInput(
@@ -16,7 +19,8 @@ class ContactForm(ModelForm):
         attrs={'class': "form-control"}))
     # birth_date = DateField(required=True, widget=DateInput(
     #     attrs={'class': "form-control"}))
-    birth_date = DateField(required=True, widget=SelectDateWidget)
+    birth_date = DateField(required=True, widget=SelectDateWidget(years=range(this_year - date_range, this_year+1)))
+    comment = CharField(max_length=255, widget=TextInput(attrs={'class': "form-control"}))
 
 ########################################################################################
 #    comment = CharField(max_length=100, widget=TextInput(attrs={'class': "form-control"}))

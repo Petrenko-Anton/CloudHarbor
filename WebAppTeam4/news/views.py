@@ -13,3 +13,7 @@ def index(request):
 def currency(request):
     currency_courses = [{'USD': {'purchase': 37.38, 'sale': 38.10, 'nbu': 36.56}}, {'EUR': {'purchase': 40.67, 'sale': 41.61, 'nbu': 39.73}}, {'PLN': {'purchase': 8.81, 'sale': 9.35, 'nbu': 8.89}}]
     return render(request, 'news/news.html', {'currency_list': currency_courses})
+
+def city(request):
+    city_list = ['Kиїв', 'Харків', 'Дніпро', 'Одеса', 'Донецьк', 'Запоріжжя', 'Львів', 'Миколаїв', 'Луганськ', 'Вінниця', 'Сімферополь', 'Херсон', 'Полтава', 'Чернігів', 'Черкаси', 'Суми', 'Житомир', 'Хмельницький', 'Кропивницький', 'Рівне', 'Чернівці', 'Тернопіль', 'Івано-Франківськ', 'Луцьк', 'Ужгрод']
+    return render(request, 'news/news.html', {'cities': city_list})

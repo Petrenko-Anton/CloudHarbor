@@ -6,7 +6,6 @@
    До списку контактів</a>
 <div class="form-block">
    <h2>Редагувати контакт</h2>
-   <br/>
    {%if form.errors and form.non_field_errors %}
    <span class="alert alert-danger" role="alert">{{form.non_field_errors}}</span>
    {% endif %}
@@ -37,7 +36,8 @@
          <span>{{form.errors.phone}}</span>
       </div>
       <div>
-         <label  class="form-label">Дата народження (yyyy-mm-dd)
+         <label  class="form-label">
+            <p>Дата народження</p>
             {{ form.birth_date }}
          </label>
          <span>{{form.errors.birth_date}}</span>

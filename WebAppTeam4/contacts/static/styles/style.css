@@ -107,11 +107,16 @@ footer {
 
 .file-icon, .card-icon {
   fill: #343A40;
-  padding-left: 12px;
+  padding-left: 6px;
 }
 
+
 .card-icon:hover, .file-icon:hover {
-  fill: var(--button-color);
+  fill: var(--link-color);
+}
+
+.card-icon:hover{
+  fill: var(--link-color);
 }
 
 .card {
@@ -136,4 +141,21 @@ footer {
 
 .card-body {
   color: #000;
+  background-color: #CFE2FF;
+  border: 0.5px solid #9EC5FE;
+  box-shadow: 0 .125rem .25rem rgba(0,0,0,.075)!important;
+}
+
+.card-body .col-4 {
+  padding: 0;
+}
+
+.card-body .row {
+  padding: 4px;
+  border-bottom: 1px solid #9EC5FE;
+}
+
+.card-text {
+  padding-top: 12px;
+  min-height: 80px;
 }
