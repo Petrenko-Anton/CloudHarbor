@@ -5,7 +5,7 @@
 <form action="{% url 'files:upload' %}" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     <div class="mb-3">
-        <label class="form-label">Description</label>
+        <label class="form-label">Опис</label>
         {{form.description}}
     </div>
     <div class="mb-3">

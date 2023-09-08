@@ -6,8 +6,7 @@ from .forms import FileForm
 from .models import File
 
 # ключ API тимчасово тут
-dbx = dropbox.Dropbox(
-    'sl.BlWbv8sLr9A-txbOBOchHrlqg3Sqd4zRb6wEt8XdPu70Kp_IN9M99QDam87w-GrEz9VcGyeexKcRc_PX7KXds0agbFqhSdZrQGHkmxtBYitR1Y5ZRAHz3e574EiiuRf4X81kDzUpzS3J')
+dbx = dropbox.Dropbox(settings.DROP_BOX)
 
 
 def main(request):
