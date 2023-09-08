@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import add_contact, index, contacts, editcontact, deletecontact, detailcontact
+from .views import add_contact, index, contacts, editcontact, deletecontact, detailcontact, contact_search, search
 app_name = 'contacts'
 
 urlpatterns = [
@@ -13,4 +13,6 @@ urlpatterns = [
     #     path("contact_list/", contact_list.as_view(),
     #          name="contact_list"),  # for debugging
     path('delete/<int:contact_id>', deletecontact.as_view(), name='deletecontact'),
+    path('search', search.as_view(), name="search"),
+    path('contact_search', contact_search.as_view(), name="contact_search"),
 ]

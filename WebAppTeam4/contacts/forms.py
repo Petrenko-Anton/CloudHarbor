@@ -1,6 +1,6 @@
 
 from django.forms import ModelForm, CharField, TextInput, EmailField, EmailInput, DateField, DateInput, SelectDateWidget
-
+from django import forms
 from .models import Contact
 
 MONTHS = {
@@ -41,3 +41,7 @@ class ContactForm(ModelForm):
     class Meta:
         model = Contact
         fields = ('first_name', 'last_name', 'email', 'phone', 'birth_date')
+
+
+class SearchContactNameForm(forms.Form):
+    search_name = forms.CharField(label="search_name", max_length=100)
