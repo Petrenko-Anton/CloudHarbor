@@ -1,0 +1,55 @@
+{% extends "contacts/base.html" %}
+{% block content %}
+<div class="form-block">
+   <h2>Реєстрація</h2>
+   <br/>
+   {%if form.errors and form.non_field_errors %}
+      <div class="alert alert-danger" role="alert">
+         <span class="alert alert-danger" role="alert">{{form.non_field_errors}}</span>
+      </div>
+   {% endif %}
+   <form  method='post' action="{% url 'users:signup' %}">
+      {% csrf_token %}
+      <div>
+         <label>Логін
+            {{ form.username }}
+         </label>
+         <span>{{form.errors.username}}</span>
+      </div>
+      <div>
+         <label>Ім'я
+         {{ form.first_name }}
+         </label>
+         <span>{{form.errors.first_name}}</span>
+      </div>
+      <div>
+         <label>Прізвище
+            {{ form.last_name }}
+         </label>
+         <span>{{form.errors.last_name}}</span>
+      </div>
+      <div>
+         <label>Email
+         {{ form.email }}
+         </label>
+         <span>{{form.errors.email}}</span>
+      </div>
+      <div>
+         <label>Пароль
+         {{ form.password1 }}
+         </label>
+         <span>{{form.errors.password1}}</span>
+      </div>
+      <div>
+         <label>Підтвердіть пароль
+         {{ form.password2 }}
+         </label>
+         <span>{{form.errors.password2}}</span>
+      </div>
+      <div>
+         <button type="submit">Зареєструватись</button>
+      </div>
+      <p class="login-form__sign-up-link"><span>Вже маєш аккаунт? </span><a href="/users/login"> Увійти</a></p>
+   </form>
+</div>
+{% endblock %}

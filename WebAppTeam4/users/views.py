@@ -13,12 +13,12 @@ from .forms import RegisterForm, LoginForm
 
 
 class RegisterView(View):
-    template_name = 'users/register.html'
+    template_name = 'users/signup.html'
     form_class = RegisterForm
 
     def dispatch(self, request, *args, **kwargs):
         if request.user.is_authenticated:
-            return redirect(to='quotes:main')
+            return redirect(to='contacts:main')
         return super().dispatch(request, *args, **kwargs)
 
     def get(self, request):
@@ -29,32 +29,37 @@ class RegisterView(View):
         if form.is_valid():
             form.save()
             username = form.cleaned_data['username']
+
             messages.success(request, f'Hello {username}. Your account was saved successfully')
-            return redirect(to='users:signin')
+            return redirect(to='users:login')
+
 
         return render(request, self.template_name, {'form': form})
 
 
-def login_user(request):
+def loginUser(request):
     if request.user.is_authenticated:
         return redirect('main')
 
     if request.method == 'POST':
-        user = authenticate(username=request.POST['username'], password=request.POST['password'])
+        user = authenticate(
+            username=request.POST['username'], password=request.POST['password'])
         if user is None:
             messages.error(request, 'Username or password didn\'t match')
             return redirect(to='users:login')
 
         login(request, user)
-        return redirect(to='quotes:main')
+        return redirect(to='contacts:main')
 
     return render(request, 'users/login.html', context={"form": LoginForm()})
 
 
 @login_required
-def logout_user(request):
+def logoutUser(request):
     logout(request)
-    return redirect(to='quotes:main')
+
+    return render(request, 'users/logout.html')
+
 
 
 class ResetPasswordView(SuccessMessageMixin, PasswordResetView):

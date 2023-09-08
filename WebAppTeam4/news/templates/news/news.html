@@ -1,5 +1,100 @@
 {%extends 'contacts/base.html' %}
 
 {% block content %}
+<h1>Новини</h1>
+<div class="row">
+    <div class="col-8">
+        {% for each_news in news %}
+            <div class="row">
+                <div class="col-sm-4">
+                    <img class="news-article-img" src="{{ each_news.img}}">
+                </div>
+                <div class="col-sm-8">
+                    <h2> {{ each_news.title }} </h2>
+                    <span> {{ each_news.description }} </span>
+                    <span><a class="read-more-link" target="_blank" href="{{each_news.link}}"> Read more </a></span>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <div class="col-4">
+        <div class="filter-block">
+            <h3>Фільтри до новин: </h3>
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" role="switch" id="business">
+                <label class="form-check-label" for="flexSwitchCheckDefault">Бізнес</label>
+            </div>
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" role="switch" id="polotics">
+                <label class="form-check-label" for="flexSwitchCheckDefault">Політика</label>
+            </div>
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" role="switch" id="world">
+                <label class="form-check-label" for="flexSwitchCheckDefault">Світ</label>
+            </div>
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" role="switch" id="sport">
+                <label class="form-check-label" for="flexSwitchCheckDefault">Спорт</label>
+            </div>
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" role="switch" id="lifestyle">
+                <label class="form-check-label" for="flexSwitchCheckDefault">Стиль життя</label>
+            </div>
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" role="switch" id="technic">
+                <label class="form-check-label" for="flexSwitchCheckDefault">Техніка</label>
+            </div>
+        </div>
 
+        <div class="currency-course">
+            <h3>Курс валют</h3>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col" class="purchase">Купівля</th>
+                        <th scope="col" class="sale">Продаж</th>
+                        <th scope="col" class="nbu">НБУ</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">USD</th>
+                        <td>37.38</td>
+                        <td>38.10</td>
+                        <td>36.57</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">EUR</th>
+                        <td>40.67</td>
+                        <td>41.61</td>
+                        <td>39.74</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">PLN</th>
+                        <td>8.81</td>
+                        <td>9.35</td>
+                        <td>8.90</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="weather-block">
+            <h3>Прогноз погоди</h3>
+            <div id="sinoptikUrkNet" class="ua" data-city="303014487">
+                <p><b>місто: </b><span>Львів</span></p>
+                <p><b>температура: </b><span>+16°</span></p>
+                <p><b>вологість: </b><span>98%</span></p>
+                <p><b>тиск: </b><span>741 мм</span></p>
+                <p><b>вітер: </b><span>1 м/с</span></p>
+                <div class="siLinks">
+                    <a class="read-more-link" target="_blank" href="https://ua.sinoptik.ua/погода-львів">На сьогодні</a> |
+                    <a class="read-more-link" target="_blank" href="https://ua.sinoptik.ua/погода-львів/завтра"> завтра</a> |
+                    <a class="read-more-link" target="_blank" href="https://ua.sinoptik.ua/погода-львів/10-днів"> 10 днів</a> |
+                    <a class="read-more-link" target="_blank" href="https://ua.sinoptik.ua/україна"> в інших містах</a></div>
+                </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

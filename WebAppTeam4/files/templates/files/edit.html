@@ -1,0 +1,18 @@
+{%extends 'contacts/base.html' %}
+
+{% block content %}
+<h1>Upload file</h1>
+<form action="{% url 'files:edit' file.id %}" method="post">
+    {% csrf_token %}
+    <img src="{{media}}{{file.path}}" class="card-img-top" alt="file">
+    <div class="mb-3">
+        <label class="form-label">Опис</label>
+        <input type="text" class="form-control" value="{{file.description}}" name="description">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Категорія</label>
+        <input type="text" class="form-control" value="{{file.category}}" name="category">
+    </div>
+    <button type="submit" class="btn btn-primary">Відправити</button>
+</form>
+{% endblock %}
