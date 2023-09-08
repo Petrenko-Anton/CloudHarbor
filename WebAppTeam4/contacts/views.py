@@ -3,7 +3,7 @@ from django.contrib import messages
 from django.core.paginator import Paginator
 from django.http import HttpResponse
 
-from .forms import ContactForm
+from .forms import ContactForm, SearchContactNameForm
 from .models import Contact
 from django.views import View
 
@@ -88,19 +88,24 @@ class detailcontact(View):
 @method_decorator(login_required, name="dispatch")
 class editcontact(View):
     template_name = "contacts/edit.html"
-    form_class = ContactForm
-    initial = {"key": "value"}
-
     # def dispatch(self, request, *args, **kwargs):
     #     return super().dispatch(request, *args, **kwargs)
 
     def get(self, request, contact_id):
-        form = self.form_class(initial=self.initial)
         contact = Contact.objects.get(pk=contact_id)
+        default_settings = {"first_name": contact.first_name,
+                            "last_name": contact.last_name,
+                            "email": contact.email,
+                            "birth_date": contact.birth_date,
+                            "phone": contact.phone,
+                            }
+
+        form = ContactForm(initial=default_settings)
+
         return render(request, self.template_name, {"form": form, "contact": contact})
 
     def post(self, request, contact_id):
-        form = self.form_class(request.POST)
+        form = ContactForm(request.POST)
         contact = Contact.objects.get(pk=contact_id)
 
         if form.is_valid():
@@ -138,6 +143,34 @@ class deletecontact(View):
         )
         return render(request, self.template_name, {"contacts": contacts})
 
+
+@method_decorator(login_required, name="dispatch")
+class contact_search(View):
+    template_name = "contacts/contacts.html"
+
+    def get(self, request, *args, **kwargs):
+        form = SearchContactNameForm()
+        return render(request, "contacts/search.html", {"form": form})
+
+    def post(self, request, *args, **kwargs):
+        form = SearchContactNameForm(request.POST)
+        if form.is_valid():
+            name = "nikita"  # form.cleaned_data["search_name"]
+            contacts = (Contact.objects.filter(user=request.user, first_name=name).all(
+            ) if request.user.is_authenticated else [])
+            return render(request, self.template_name, {"contacts": contacts})
+        else:
+            form = SearchContactNameForm()
+            return render(request, "contacts/search.html", {"form": form})
+
+
+@method_decorator(login_required, name="dispatch")
+class search(View):
+    template_name = "contacts/search.html"
+
+    def get(self, request, *args, **kwargs):
+        form = SearchContactNameForm()
+        return render(request, self.template_name, {"form": form})
 
 # from Django documentation
 # b = Blog.objects.get(pk=1)
