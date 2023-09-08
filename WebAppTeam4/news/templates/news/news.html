@@ -1,53 +1,60 @@
 {%extends 'contacts/base.html' %}
-
 {% block content %}
 <h1>Новини</h1>
 <div class="row">
     <div class="col-8">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="bussiness" data-toggle="tab" href="#bussiness" role="tab" aria-controls="bussiness" aria-selected="true">Бізнес</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="politic" data-toggle="tab" href="#politic" role="tab" aria-controls="politic" aria-selected="true">Політика</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="world" data-toggle="tab" href="#world" role="tab" aria-controls="world" aria-selected="true">Світ</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="sport" data-toggle="tab" href="#sport" role="tab" aria-controls="sport" aria-selected="true">Спорт</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="lifestyle" data-toggle="tab" href="#lifestyle" role="tab" aria-controls="lifestyle" aria-selected="true">Стиль життя</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="technic" data-toggle="tab" href="#tech" role="tab" aria-controls="tech" aria-selected="true">Техніка</a>
+            </li>
+        </ul>
         {% for each_news in news %}
-            <div class="row">
-                <div class="col-sm-4">
-                    <img class="news-article-img" src="{{ each_news.img}}">
-                </div>
-                <div class="col-sm-8">
-                    <h2> {{ each_news.title }} </h2>
-                    <span> {{ each_news.description }} </span>
-                    <span><a class="read-more-link" target="_blank" href="{{each_news.link}}"> Read more </a></span>
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="bussiness" role="tabpanel" aria-labelledby="home-tab">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <img class="news-article-img" src="{{ each_news.img}}">
+                    </div>
+                    <div class="col-sm-8">
+                        <h2> {{ each_news.title }} </h2>
+                        <span> {{ each_news.description }} </span>
+                        <span><a class="read-more-link" target="_blank" href="{{each_news.link}}"> Read more </a></span>
+                    </div>
                 </div>
             </div>
+            <div class="tab-pane fade" id="politic" role="tabpanel" aria-labelledby="profile-tab">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <img class="news-article-img" src="{{ each_news.img}}">
+                    </div>
+                    <div class="col-sm-8">
+                        <h2> {{ each_news.title }} </h2>
+                        <span> {{ each_news.description }} </span>
+                        <span><a class="read-more-link" target="_blank" href="{{each_news.link}}"> Read more </a></span>
+                    </div>
+                </div>
+            </div>
+          </div>
         {% endfor %}
     </div>
     <div class="col-4">
-        <div class="filter-block">
-            <h3>Фільтри до новин: </h3>
-            <div class="form-check form-switch">
-                <input class="form-check-input" type="checkbox" role="switch" id="business">
-                <label class="form-check-label" for="flexSwitchCheckDefault">Бізнес</label>
-            </div>
-            <div class="form-check form-switch">
-                <input class="form-check-input" type="checkbox" role="switch" id="polotics">
-                <label class="form-check-label" for="flexSwitchCheckDefault">Політика</label>
-            </div>
-            <div class="form-check form-switch">
-                <input class="form-check-input" type="checkbox" role="switch" id="world">
-                <label class="form-check-label" for="flexSwitchCheckDefault">Світ</label>
-            </div>
-            <div class="form-check form-switch">
-                <input class="form-check-input" type="checkbox" role="switch" id="sport">
-                <label class="form-check-label" for="flexSwitchCheckDefault">Спорт</label>
-            </div>
-            <div class="form-check form-switch">
-                <input class="form-check-input" type="checkbox" role="switch" id="lifestyle">
-                <label class="form-check-label" for="flexSwitchCheckDefault">Стиль життя</label>
-            </div>
-            <div class="form-check form-switch">
-                <input class="form-check-input" type="checkbox" role="switch" id="technic">
-                <label class="form-check-label" for="flexSwitchCheckDefault">Техніка</label>
-            </div>
-        </div>
-
         <div class="currency-course">
-            <h3>Курс валют</h3>
+            <h3>Курс валют на сьогодні</h3>
             <table class="table table-bordered">
                 <thead>
                     <tr>
@@ -79,15 +86,25 @@
                 </tbody>
             </table>
         </div>
-
         <div class="weather-block">
             <h3>Прогноз погоди</h3>
-            <div id="sinoptikUrkNet" class="ua" data-city="303014487">
-                <p><b>місто: </b><span>Львів</span></p>
-                <p><b>температура: </b><span>+16°</span></p>
-                <p><b>вологість: </b><span>98%</span></p>
-                <p><b>тиск: </b><span>741 мм</span></p>
-                <p><b>вітер: </b><span>1 м/с</span></p>
+            <div>
+                <div class="dropdown">
+                    <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Оберіть місто
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        {% for city in city_list %}
+                       <a class="dropdown-item" href="#">{{ city }}</a>
+                        {% endfor %}
+                    </div>
+                </div>
+                <p><b>температура: </b><span>{{ weather_info.current.temperature }}</span></p>
+                <p><b>вологість: </b><span>{{ weather_info.current.humidity }}</span></p>
+                <p><b>тиск: </b><span>{{ weather_info.current.pressure}}</span></p>
+                <p><b>вітер: </b><span>{{ weather_info.current.wind_speed}}</span></p>
+                <p><b>хмарність: </b><span>{{ weather_info.current.cloudness}}</span></p>
+                <p><b>опади: </b><span>{{ weather_info.current.description}}</span></p>
                 <div class="siLinks">
                     <a class="read-more-link" target="_blank" href="https://ua.sinoptik.ua/погода-львів">На сьогодні</a> |
                     <a class="read-more-link" target="_blank" href="https://ua.sinoptik.ua/погода-львів/завтра"> завтра</a> |
