@@ -1,5 +1,4 @@
 {%extends 'contacts/base.html' %}
-
 {% block content %}
 <h1>Новини</h1>
 <div class="row">
@@ -100,6 +99,7 @@
                 {% endfor %}
             </div>
         </div>
+
     </div>
     <div class="col-4">
         <div class="currency-course">
@@ -135,17 +135,18 @@
                 </tbody>
             </table>
         </div>
-
         <div class="weather-block">
             <h3>Прогноз погоди</h3>
+<<<<<<< HEAD
             <div class="dropdown d-md-block">
                 <a class="btn dropdown-toggle" role="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false">
                     Оберіть місто
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <li><a class="dropdown-item" id="kyiv" data-target="#kyiv-pane" aria-selected="true">Київ</a></li>
-                    <li><a class="dropdown-item" id="dnipro" data-target="#dnipro-pane" aria-selected="false">Дніпро</a></li>
-                    <li><a class="dropdown-item" id="lviv" data-target="#lviv-pane" aria-selected="false">Львів</a></li>
+                    {% for city in city_list %}
+                        <a class="dropdown-item" href="#">{{ city }}</a>
+                        <li><a class="dropdown-item" id="{{ city }}" data-target="#{{ city }}-pane" aria-selected="true">{{ city }}</a></li>
+                    {% endfor %}
                 </ul>
             </div>
             <!----<div class="dropdown-content" id="dropdownContent">
@@ -153,13 +154,12 @@
                 <div class="dropdown-pane fade" id="dnipro-pane" role="dropdownpanel" aria-labelledby="dnipro-tab" tabindex="0">dnipro</div>
                 <div class="dropdown-pane fade" id="lviv-pane" role="dropdownpanel" aria-labelledby="lviv-tab" tabindex="0">lviv</div>
             </div>-->
-            <p><b>температура вночі: </b><span>+27°</span></p>
-            <p><b>температура вдень: </b><span>+16°</span></p>
-            <p><b>вологість: </b><span>29%</span></p>
-            <p><b>тиск: </b><span>741 мм.рт.ст.</span></p>
-            <p><b>швидкість вітру: </b><span>5.32 м/с ←</span></p>
-            <p><b>хмарність: </b><span>98%</span></p>
-            <p><b>опис: </b><span>чисте небо</span></p>
+            <p><b>температура: </b><span>{{ weather_info.current.temperature }}</span></p>
+            <p><b>вологість: </b><span>{{ weather_info.current.humidity }}</span></p>
+            <p><b>тиск: </b><span>{{ weather_info.current.pressure}}</span></p>
+            <p><b>вітер: </b><span>{{ weather_info.current.wind_speed}}</span></p>
+            <p><b>хмарність: </b><span>{{ weather_info.current.cloudness}}</span></p>
+            <p><b>опади: </b><span>{{ weather_info.current.description}}</span></p>
             <br/>
             <div class="siLinks">
                 <a class="read-more-link" target="_blank" href="https://ua.sinoptik.ua/погода-львів">На сьогодні</a> |

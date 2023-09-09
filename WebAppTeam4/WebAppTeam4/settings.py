@@ -25,6 +25,7 @@ environ.Env.read_env(BASE_DIR / ".env")
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
+# SECRET_KEY = "django-insecure-4u10lnpkw-h(xg@u7k+g2(-7%)19=54ee@(z)7qlsj&hl^-&xa"
 SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -93,18 +94,6 @@ DATABASES = {
     }
 }
 
-
-# CACHES = {
-#     "default": {
-#         "BACKEND": "django_redis.cache.RedisCache",
-#         "LOCATION": env('REDIS'),
-#         "OPTIONS": {
-#             "CLIENT_CLASS": "django_redis.client.DefaultClient"
-#         },
-#         "KEY_PREFIX": "example"
-#     }
-# }
-
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
@@ -128,13 +117,17 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = env('EMAIL_HOST')
 EMAIL_PORT = env('EMAIL_PORT')
 
+
 EMAIL_STARTTLS = False
 EMAIL_USE_SSL = True
 EMAIL_USE_TLS = False
 EMAIL_HOST_USER = env('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
+
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
+WEATHER_API_KEY = env('WEATHER_API_KEY')
+USER_AGENT = env('USER_AGENT')
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
