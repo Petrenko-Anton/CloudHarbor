@@ -5,30 +5,30 @@
     <div class="col-8">
         <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item">
-                <a class="nav-link active" id="bussiness" data-toggle="tab" href="#bussiness" role="tab" aria-controls="bussiness" aria-selected="true">Бізнес</a>
+                <a class="nav-link active" id="bussiness" data-toggle="tab" href="business" role="tab" aria-controls="business" aria-selected="true">Бізнес</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" id="politic" data-toggle="tab" href="#politic" role="tab" aria-controls="politic" aria-selected="true">Політика</a>
+                <a class="nav-link" id="politic" data-toggle="tab" href="politic" role="tab" aria-controls="politic" aria-selected="true">Політика</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" id="world" data-toggle="tab" href="#world" role="tab" aria-controls="world" aria-selected="true">Світ</a>
+                <a class="nav-link" id="world" data-toggle="tab" href="world" role="tab" aria-controls="world" aria-selected="true">Світ</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" id="sport" data-toggle="tab" href="#sport" role="tab" aria-controls="sport" aria-selected="true">Спорт</a>
+                <a class="nav-link" id="sport" data-toggle="tab" href="sport" role="tab" aria-controls="sport" aria-selected="true">Спорт</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" id="lifestyle" data-toggle="tab" href="#lifestyle" role="tab" aria-controls="lifestyle" aria-selected="true">Стиль життя</a>
+                <a class="nav-link" id="lifestyle" data-toggle="tab" href="lifestyle" role="tab" aria-controls="lifestyle" aria-selected="true">Стиль життя</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" id="technic" data-toggle="tab" href="#tech" role="tab" aria-controls="tech" aria-selected="true">Техніка</a>
+                <a class="nav-link" id="technic" data-toggle="tab" href="tech" role="tab" aria-controls="tech" aria-selected="true">Техніка</a>
             </li>
         </ul>
         {% for each_news in news %}
         <div class="tab-content" id="myTabContent">
-            <div class="tab-pane fade show active" id="bussiness" role="tabpanel" aria-labelledby="home-tab">
+            <div class="tab-pane fade show active" id="business" role="tabpanel" aria-labelledby="home-tab">
                 <div class="row">
                     <div class="col-sm-4">
-                        <img class="news-article-img" src="{{ each_news.img}}">
+                        <img class="news-article-img" src="{{ each_news.img|default_if_none:'https://static3.depositphotos.com/1004325/185/i/450/depositphotos_1853470-stock-photo-news.jpg'}}">
                     </div>
                     <div class="col-sm-8">
                         <h2> {{ each_news.title }} </h2>
@@ -65,24 +65,16 @@
                     </tr>
                 </thead>
                 <tbody>
+                    {% for cur in currency_list %}
                     <tr>
-                        <th scope="row">USD</th>
-                        <td>37.38</td>
-                        <td>38.10</td>
-                        <td>36.57</td>
+                        {% for code, nums in cur.items %}
+                        <th scope="row">{{ code }}</th>
+                            {% for k, v in nums.items %}
+                                <td>{{ v }}</td>
+                            {% endfor %}
+                        {% endfor %}
                     </tr>
-                    <tr>
-                        <th scope="row">EUR</th>
-                        <td>40.67</td>
-                        <td>41.61</td>
-                        <td>39.74</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">PLN</th>
-                        <td>8.81</td>
-                        <td>9.35</td>
-                        <td>8.90</td>
-                    </tr>
+                    <{% endfor %}
                 </tbody>
             </table>
         </div>

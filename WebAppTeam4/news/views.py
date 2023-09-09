@@ -1,31 +1,15 @@
-import os
-from bs4 import BeautifulSoup
-import requests
-from django.shortcuts import render
-# from .cities import city_dict
 import datetime
 import json
-from dotenv import load_dotenv
-from pathlib import Path
+
+import requests
+from bs4 import BeautifulSoup
 from django.conf import settings
+from django.shortcuts import render
 
-city_dict = {"Kиїв": {"lat": 50.4500336, "lon": 30.5241361}, "Харків": {"lat": 49.9923181, "lon": 36.2310146},
-          "Дніпро": {"lat": 48.4680221, "lon": 35.0417711}, "Одеса": {"lat": 46.4843023, "lon": 30.7322878},
-          "Донецьк": {"lat": 48.0158753, "lon": 37.8013407}, "Запоріжжя": {"lat": 47.8507859, "lon": 35.1182867},
-          "Львів": {"lat": 49.841952, "lon": 24.0315921}, "Миколаїв": {"lat": 46.9758615, "lon":31.9939666},
-          "Луганськ": {"lat": 48.5717084, "lon": 39.2973153}, "Вінниця": {"lat": 49.2320162, "lon": 28.467975},
-          "Сімферополь": {"lat": 44.9521459, "lon": 34.1024858}, "Херсон": {"lat": 46.6412644,"lon": 32.625794},
-          "Полтава": {"lat": 49.5897423, "lon": 34.5507948}, "Чернігів": {"lat": 51.494099,"lon": 31.294332},
-          "Черкаси": {"lat": 49.4447888, "lon": 32.0587805}, "Суми": {"lat": 50.9119775,"lon": 34.8027723},
-          "Житомир": {"lat": 50.2598298, "lon": 28.6692345}, "Хмельницький": {"lat": 49.4196404,"lon": 26.9793793},
-          "Кропивницький": {"lat": 48.5105805, "lon": 32.2656283}, "Рівне": {"lat": 50.6196175,"lon": 26.2513165},
-          "Чернівці": {"lat": 48.2864702,"lon": 25.9376532}, "Тернопіль": {"lat": 49.5557716,"lon": 25.591886},
-          "Івано-Франківськ": {"lat": 48.9225224,"lon": 24.7103188}, "Луцьк": {"lat": 50.7450733, "lon": 25.320078},
-          "Ужгрод": {"lat": 48.6223732, "lon": 22.3022569}}
-
+from .cities import city_dict
 
 headers = {
-    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36'
+    'User-Agent': settings.USER_AGENT
 }
 
 city_list = list(city_dict.keys())
@@ -33,6 +17,14 @@ city_list = list(city_dict.keys())
 class ReadRss:
 
     def __init__(self, rss_url, headers):
+
+        def find_pic(url):
+            r = requests.get(url, headers=self.headers)
+            soup = BeautifulSoup(r.text, "html.parser")
+            main_image = soup.find("meta", property="og:image")
+            image_url = main_image["content"]
+            return image_url if main_image else None
+
 
         self.url = rss_url
         self.headers = headers
@@ -50,7 +42,8 @@ class ReadRss:
         self.articles = self.soup.findAll('item')[:10] # parsing only last 10 news
         self.articles_dicts = [
             {'title': a.find('title').text, 'link': a.find('link').text,
-             'description': a.find('description').text, 'pubdate': a.find('pubDate').text} for a in self.articles]
+             'description': a.find('description').text.replace(r'\"', '"').strip('"'),
+             'pubdate': a.find('pubDate').text, 'img': find_pic(a.find('link').text)} for a in self.articles]
 
 
 class ReadWeather():
@@ -107,19 +100,40 @@ class ReadWeather():
             }
             self.weather_info[city]["daily"].append(daily_info)
 
-
-def index(request, category="#world", city="Kиїв"):
-    cat_dict = {'#business': 1, '#politic': 7, '#world': 12, '#sport': 17, '#lifestyle': 5, "#tech": 8}
+def index(request, category="business", city="Kиїв"):
+    cat_dict = {'business': 1, 'politic': 7, 'world': 12, 'sport': 17, 'lifestyle': 5, "tech": 8}
     url = f'https://kurs.com.ua/novosti/rss/feed-{cat_dict[category]}.xml'
     news = ReadRss(url, headers).articles_dicts
-    weather_info = ReadWeather('3478743f8ff6ad5d9cae9ea84b3cb414', city).weather_info
-    return render(request, 'news/news.html', {'news': news, 'city_list': city_list, 'city': city, 'weather_info': weather_info})
+    weather_info = ReadWeather(settings.WEATHER_API_KEY, city).weather_info
+    return render(request, 'news/news.html', {'news': news, 'city_list': city_list, 'city': city, 'weather_info': weather_info, 'currency_list': currency()})
 
-def currency(request):
-    currency_courses = [{'USD': {'purchase': 37.38, 'sale': 38.10, 'nbu': 36.56}}, {'EUR': {'purchase': 40.67, 'sale': 41.61, 'nbu': 39.73}}, {'PLN': {'purchase': 8.81, 'sale': 9.35, 'nbu': 8.89}}]
-    return render(request, 'news/news.html', {'currency_list': currency_courses})
+def currency():
+
+    today = datetime.datetime.now().date().strftime('%d.%m.%Y')
+    r = requests.get(f'https://api.privatbank.ua/p24api/exchange_rates?json&date={today}')
+    json_ = r.text
+    data = json.loads(json_)
+    desired_currencies = ['USD', 'EUR', 'GBP', 'CHF', 'PLN']
+    currency_courses = []
+    for exchange_rate in data["exchangeRate"]:
+        currency_code = exchange_rate["currency"]
+
+        if currency_code in desired_currencies:
+            purchase_rate = exchange_rate.get("purchaseRate")
+            sale_rate = exchange_rate.get("saleRate")
+            nbu_rate = round(((exchange_rate.get("purchaseRateNB") + exchange_rate.get("saleRateNB")) / 2), 2)
+
+            currency_courses.append({
+                currency_code: {
+                    "purchase": purchase_rate,
+                    "sale": sale_rate,
+                    "nbu": nbu_rate
+                }
+            })
+    print(currency_courses)
+    return (sorted(currency_courses, key=lambda x: desired_currencies.index(list(x.keys())[0])))
 
 def weather(request):
     city = request.args.get('city')
-    weather_feed = ReadWeather('3478743f8ff6ad5d9cae9ea84b3cb414', city)
+    weather_feed = ReadWeather(settings.WEATHER_API_KEY, city)
     render(request, 'news/news.html', {'weather_info': weather_feed.weather_info})
