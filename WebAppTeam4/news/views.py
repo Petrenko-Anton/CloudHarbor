@@ -130,7 +130,6 @@ def currency():
                     "nbu": nbu_rate
                 }
             })
-    print(currency_courses)
     return (sorted(currency_courses, key=lambda x: desired_currencies.index(list(x.keys())[0])))
 
 def weather(request):
