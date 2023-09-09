@@ -1,10 +1,12 @@
 import datetime
 import json
-
+import redis
+from redis_lru import RedisLRU
 import requests
 from bs4 import BeautifulSoup
 from django.conf import settings
 from django.shortcuts import render
+from django.views.decorators.cache import cache_control
 
 from .cities import city_dict
 
@@ -14,8 +16,11 @@ headers = {
 
 city_list = list(city_dict.keys())
 
-class ReadRss:
+client = redis.StrictRedis(host=settings.REDIS_HOST, port=settings.REDIS_PORT, password=settings.REDIS_PASSWORD)
+cache = RedisLRU(client)
 
+
+class ReadRss:
     def __init__(self, rss_url, headers):
 
         def find_pic(url):
@@ -24,7 +29,6 @@ class ReadRss:
             main_image = soup.find("meta", property="og:image")
             image_url = main_image["content"]
             return image_url if main_image else None
-
 
         self.url = rss_url
         self.headers = headers
@@ -39,7 +43,7 @@ class ReadRss:
         except Exception as e:
             print('Could not parse the xml: ', self.url)
             print(e)
-        self.articles = self.soup.findAll('item')[:10] # parsing only last 10 news
+        self.articles = self.soup.findAll('item')[:10]  # parsing only last 10 news
         self.articles_dicts = [
             {'title': a.find('title').text, 'link': a.find('link').text,
              'description': a.find('description').text.replace(r'\"', '"').strip('"'),
@@ -100,15 +104,9 @@ class ReadWeather():
             }
             self.weather_info[city]["daily"].append(daily_info)
 
-def index(request, category="business", city="Kиїв"):
-    cat_dict = {'business': 1, 'politic': 7, 'world': 12, 'sport': 17, 'lifestyle': 5, "tech": 8}
-    url = f'https://kurs.com.ua/novosti/rss/feed-{cat_dict[category]}.xml'
-    news = ReadRss(url, headers).articles_dicts
-    weather_info = ReadWeather(settings.WEATHER_API_KEY, city).weather_info
-    return render(request, 'news/news.html', {'news': news, 'city_list': city_list, 'city': city, 'weather_info': weather_info, 'currency_list': currency()})
 
+@cache(ttl=60 * 60 * 24)
 def currency():
-
     today = datetime.datetime.now().date().strftime('%d.%m.%Y')
     r = requests.get(f'https://api.privatbank.ua/p24api/exchange_rates?json&date={today}')
     json_ = r.text
@@ -132,7 +130,25 @@ def currency():
             })
     return (sorted(currency_courses, key=lambda x: desired_currencies.index(list(x.keys())[0])))
 
-def weather(request):
-    city = request.args.get('city')
+
+@cache(ttl=60 * 60 * 2)
+def weather(city):
     weather_feed = ReadWeather(settings.WEATHER_API_KEY, city)
-    render(request, 'news/news.html', {'weather_info': weather_feed.weather_info})
+    return weather_feed.weather_info
+
+
+@cache(ttl=60 * 60 * 4)
+def news(category):
+    cat_dict = {'business': 1, 'politic': 7, 'world': 12, 'sport': 17, 'lifestyle': 5, "tech": 8}
+    url = f'https://kurs.com.ua/novosti/rss/feed-{cat_dict[category]}.xml'
+    news_feed = ReadRss(url, headers).articles_dicts
+    return news_feed
+
+
+@cache_control(max_age=60 * 15)
+def index(request, category="business", city="Kиїв"):
+    news_feed = news(category)
+    weather_info = weather(city)
+    return render(request, 'news/news.html',
+                  {'news': news_feed, 'city_list': city_list, 'city': city, 'weather_info': weather_info,
+                   'currency_list': currency()})

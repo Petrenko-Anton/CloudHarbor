@@ -25,7 +25,7 @@ environ.Env.read_env(BASE_DIR / ".env")
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = "django-insecure-4u10lnpkw-h(xg@u7k+g2(-7%)19=54ee@(z)7qlsj&hl^-&xa"
+
 SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DROP_BOX = env('DROP_BOX')
@@ -95,6 +95,12 @@ DATABASES = {
     }
 }
 
+REDIS = env('REDIS')
+REDIS_HOST=env('REDIS_HOST')
+REDIS_PORT=env('REDIS_PORT')
+REDIS_PASSWORD=env('REDIS_PASSWORD')
+
+
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
@@ -127,6 +133,7 @@ EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
 
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
+# Scraping env vars
 WEATHER_API_KEY = env('WEATHER_API_KEY')
 USER_AGENT = env('USER_AGENT')
 
