@@ -3,7 +3,7 @@ from django.contrib import messages
 from django.core.paginator import Paginator
 from django.http import HttpResponse
 
-from .forms import ContactForm, SearchContactNameForm
+from .forms import ContactForm, SearchContactNameForm, SearchContactEmailForm
 from .models import Contact
 from django.views import View
 
@@ -145,32 +145,44 @@ class deletecontact(View):
 
 
 @method_decorator(login_required, name="dispatch")
-class contact_search(View):
+class contact_search_by_email(View):
+    template_name = "contacts/contacts.html"
+
+    def get(self, request, *args, **kwargs):
+        form = SearchContactEmailForm()
+        return render(request, "contacts/contact_search_by_email.html", {"form": form})
+
+    def post(self, request, *args, **kwargs):
+        form = SearchContactEmailForm(request.POST)
+        if form.is_valid():
+            search_email = form.cleaned_data["search_email"]
+            contacts = (Contact.objects.filter(user=request.user, email=search_email).all(
+            ) if request.user.is_authenticated else [])
+            return render(request, self.template_name, {"contacts": contacts})
+        else:
+            form = SearchContactEmailForm()
+            return render(request, "contacts/contact_search_by_email.html", {"form": form})
+
+
+@method_decorator(login_required, name="dispatch")
+class contact_search_by_name(View):
     template_name = "contacts/contacts.html"
 
     def get(self, request, *args, **kwargs):
         form = SearchContactNameForm()
-        return render(request, "contacts/search.html", {"form": form})
+        return render(request, "contacts/contact_search_by_name.html", {"form": form})
 
     def post(self, request, *args, **kwargs):
         form = SearchContactNameForm(request.POST)
         if form.is_valid():
-            name = "nikita"  # form.cleaned_data["search_name"]
+            name = form.cleaned_data["search_name"]
             contacts = (Contact.objects.filter(user=request.user, first_name=name).all(
             ) if request.user.is_authenticated else [])
             return render(request, self.template_name, {"contacts": contacts})
         else:
             form = SearchContactNameForm()
-            return render(request, "contacts/search.html", {"form": form})
+            return render(request, "contacts/contact_search_by_name.html", {"form": form})
 
-
-@method_decorator(login_required, name="dispatch")
-class search(View):
-    template_name = "contacts/search.html"
-
-    def get(self, request, *args, **kwargs):
-        form = SearchContactNameForm()
-        return render(request, self.template_name, {"form": form})
 
 # from Django documentation
 # b = Blog.objects.get(pk=1)

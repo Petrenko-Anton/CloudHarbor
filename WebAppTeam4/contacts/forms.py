@@ -2,6 +2,7 @@
 from django.forms import ModelForm, CharField, TextInput, EmailField, EmailInput, DateField, DateInput, SelectDateWidget
 from django import forms
 from .models import Contact
+from datetime import date
 
 MONTHS = {
     1: "січня",
@@ -32,7 +33,7 @@ class ContactForm(ModelForm):
     # birth_date = DateField(required=True, widget=DateInput(
     #     attrs={'class': "form-control"}))
     birth_date = DateField(
-        required=True, widget=SelectDateWidget(months=MONTHS))
+        required=True, widget=SelectDateWidget(months=MONTHS, years=[x for x in range(date.today().year - 100, date.today().year + 1)]))
 
 ########################################################################################
 #    comment = CharField(max_length=100, widget=TextInput(attrs={'class': "form-control"}))
@@ -45,3 +46,8 @@ class ContactForm(ModelForm):
 
 class SearchContactNameForm(forms.Form):
     search_name = forms.CharField(label="search_name", max_length=100)
+
+
+class SearchContactEmailForm(forms.Form):
+    search_email = forms.EmailField(max_length=100, required=True,
+                                    widget=EmailInput(attrs={'class': "form-control"}))
