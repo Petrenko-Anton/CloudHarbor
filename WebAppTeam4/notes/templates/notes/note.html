@@ -10,19 +10,22 @@
     <form method="POST" action="{% url 'notes:note' %}">
         {% csrf_token %}
         <div>
-            <label> Назва:
+            <label class="form-label"> 
+                <p>Назва:</p>
                 {{ form.name }}
             </label>
             <span>{{ form.errors.name }}</span>
         </div>
         <div>
-            <label> Опис:
+            <label class="form-label"> 
+                <p>Опис:</p>
                 {{ form.description }}
             </label>
             <span>{{ form.errors.description }}</span>
         </div>
         <div class="dropdown">
-            <label> Вибрати теги:
+            <label class="form-label"> 
+                <p>Вибрати теги:</p>
                 <select name="tags" multiple="multiple" required>
                     {% for tag in tags %}
                     <option value="{{tag.name}}">{{tag.name}}</option>

@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 import environ
 import os
-# import django_redis
+import django_redis
 from pathlib import Path
 
 

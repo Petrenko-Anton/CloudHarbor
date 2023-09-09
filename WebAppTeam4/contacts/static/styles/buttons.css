@@ -16,8 +16,19 @@ button, .btn {
     margin: 12px auto;
   }
   
-  button:hover, .btn:hover {
+  button:hover, .btn:hover, .btn-main:hover {
     cursor: pointer;
     background-color: var(--button-hover);
     border: 1px solid var(--border-hover);
+  }
+
+  .btn-main {
+    background-color: var(--button-color);
+    border: 1px solid var(--button-color);
+    border-radius: 5px;
+    padding: 16px;
+    margin: 5px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
   }
