@@ -28,6 +28,7 @@ environ.Env.read_env(BASE_DIR / ".env")
 # SECRET_KEY = "django-insecure-4u10lnpkw-h(xg@u7k+g2(-7%)19=54ee@(z)7qlsj&hl^-&xa"
 SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
+DROP_BOX = env('DROP_BOX')
 DEBUG = True
 
 ALLOWED_HOSTS = []
