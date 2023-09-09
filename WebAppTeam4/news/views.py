@@ -18,10 +18,11 @@ city_list = list(city_dict.keys())
 
 client = redis.StrictRedis(host=settings.REDIS_HOST, port=settings.REDIS_PORT, password=settings.REDIS_PASSWORD)
 cache = RedisLRU(client)
+r = redis.Redis(host=settings.REDIS_HOST, port=settings.REDIS_PORT, password=settings.REDIS_PASSWORD)
 
-
+news_id =1
 class ReadRss:
-    def __init__(self, rss_url, headers):
+    def __init__(self, rss_url, category, headers):
 
         def find_pic(url):
             r = requests.get(url, headers=self.headers)
@@ -32,6 +33,7 @@ class ReadRss:
 
         self.url = rss_url
         self.headers = headers
+        self.category = category
         try:
             self.r = requests.get(rss_url, headers=self.headers)
             self.status_code = self.r.status_code
@@ -45,7 +47,7 @@ class ReadRss:
             print(e)
         self.articles = self.soup.findAll('item')[:10]  # parsing only last 10 news
         self.articles_dicts = [
-            {'title': a.find('title').text, 'link': a.find('link').text,
+            {'category': self.category, 'title': a.find('title').text, 'link': a.find('link').text,
              'description': a.find('description').text.replace(r'\"', '"').strip('"'),
              'pubdate': a.find('pubDate').text, 'img': find_pic(a.find('link').text)} for a in self.articles]
 
@@ -137,18 +139,30 @@ def weather(city):
     return weather_feed.weather_info
 
 
-@cache(ttl=60 * 60 * 4)
-def news(category):
+
+def news():
+    news_feed = []
     cat_dict = {'business': 1, 'politic': 7, 'world': 12, 'sport': 17, 'lifestyle': 5, "tech": 8}
-    url = f'https://kurs.com.ua/novosti/rss/feed-{cat_dict[category]}.xml'
-    news_feed = ReadRss(url, headers).articles_dicts
+    for cat in cat_dict.keys():
+        print(cat)
+        url = f'https://kurs.com.ua/novosti/rss/feed-{cat_dict[cat]}.xml'
+        news_feed.extend(ReadRss(url, cat, headers).articles_dicts)
+        print(news_feed)
     return news_feed
 
 
-@cache_control(max_age=60 * 15)
-def index(request, category="business", city="Kиїв"):
-    news_feed = news(category)
+def get_news():
+    news_ = r.get(str(news_id))
+    if news_ is None:
+        news_ = news()
+        r.set(news_id, json.dumps(news_))
+        r.expire(str(news_id), 60 * 60 * 2)
+        return news_
+    return json.loads(news_)
+
+
+def index(request, city="Kиїв"):
+    news_f = get_news()
     weather_info = weather(city)
-    return render(request, 'news/news.html',
-                  {'news': news_feed, 'city_list': city_list, 'city': city, 'weather_info': weather_info,
-                   'currency_list': currency()})
+    return render(request, 'news/news.html',{'news': news_f, 'city_list': city_list, 'city': city,
+                                             'weather_info': weather_info, 'currency_list': currency()})

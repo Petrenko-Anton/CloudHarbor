@@ -28,12 +28,12 @@ class ContactForm(ModelForm):
     email = EmailField(max_length=100, required=True, widget=EmailInput(attrs={'class': "form-control"}))
     phone = CharField(max_length=100, widget=TextInput(attrs={'class': "form-control"}))
     birth_date = DateField(required=True, widget=SelectDateWidget(months=MONTHS, years=range(this_year - date_range, this_year+1)))
-    #comment = CharField(max_length=255, widget=TextInput(attrs={'class': "form-control"}))
+    description = CharField(max_length=255, widget=TextInput(attrs={'class': "form-control"}))
 
 
     class Meta:
         model = Contact
-        fields = ('first_name', 'last_name', 'email', 'phone', 'birth_date')
+        fields = ('first_name', 'last_name', 'email', 'phone', 'birth_date', 'description')
 
 
 class SearchContactNameForm(forms.Form):
