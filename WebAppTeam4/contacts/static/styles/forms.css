@@ -48,3 +48,19 @@
     margin-top: 6px;
     min-width: 80px;
   }
+
+  .d-flex input {
+    padding: 12px;
+    height: 58px;
+    margin: 6px 6px 6px 16px;
+  }
+
+  .search-form {
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    margin-right: 6px;
+    margin-top: 6px;
+    width: 250px;
+    cursor: pointer;
+  }
+  

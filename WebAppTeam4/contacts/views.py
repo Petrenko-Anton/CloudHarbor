@@ -31,8 +31,17 @@ class contacts(View):
         )
         return render(request, self.template_name, {"contacts": contacts})
 
-# add contact_id in params
+@method_decorator(login_required, name="dispatch")
+class birthlist(View):
+    template_name = "contacts/birthlist.html"
 
+    def get(self, request, *args, **kwargs):
+        contacts = (
+            Contact.objects.filter(user=request.user).all()
+            if request.user.is_authenticated
+            else []
+        )
+        return render(request, self.template_name, {"contacts": contacts})
 
 @method_decorator(login_required, name="dispatch")
 class add_contact(View):

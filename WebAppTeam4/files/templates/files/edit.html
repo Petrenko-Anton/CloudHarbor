@@ -2,9 +2,10 @@
 
 {% block content %}
 <h1>Upload file</h1>
+<p>File name: {{file.path}}</p>
 <form action="{% url 'files:edit' file.id %}" method="post">
     {% csrf_token %}
-    <img src="{{media}}{{file.path}}" class="card-img-top" alt="file">
+    <img src="{% media '{{file.path}}' %}" class="card-img-top" alt="file">
     <div class="mb-3">
         <label class="form-label">Description</label>
         <input type="text" class="form-control" value="{{file.description}}" name="description">

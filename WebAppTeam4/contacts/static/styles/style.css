@@ -107,15 +107,27 @@ footer {
 
 .file-icon, .card-icon {
   fill: #343A40;
-  padding-left: 6px;
 }
 
+.event-icon {
+  fill: #343A40;
+  padding-left: 8px;
+}
 
-.card-icon:hover, .file-icon:hover {
+.back-icon {
+  fill: #343A40;
+  padding-right: 8px;
+}
+
+.card-icon:hover, .file-icon:hover, .event-icon:hover, .back-icon:hover {
   fill: var(--link-color);
 }
 
-.card-icon:hover{
+.login-icon {
+  fill: #ffffff;
+}
+
+.card-icon:hover, .login-icon:hover{
   fill: var(--link-color);
 }
 
@@ -158,4 +170,32 @@ footer {
 .card-text {
   padding-top: 12px;
   min-height: 80px;
+}
+
+.dropdown-toggle {
+  margin-bottom: 12px;
+}
+
+.filter-file-block {
+  padding: 16px;
+  margin: 16px;
+}
+
+.filter-file-block .nav-link {
+  color: #992c85;
+  text-decoration: underline;
+  border: 1px solid #ffffff;
+  margin: 0px 8px;
+}
+
+.filter-file-block .nav-link.active {
+  background-color: #992c85;
+  border: 1px solid #992c85;
+  color: #ffffff;
+}
+
+.filter-file-block .nav-link:hover {
+  color: #992c85;
+  border: 1px solid #992c85;
+  background-color: #ffffff;
 }
