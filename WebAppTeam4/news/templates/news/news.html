@@ -137,29 +137,19 @@
         </div>
         <div class="weather-block">
             <h3>Прогноз погоди</h3>
-<<<<<<< HEAD
-            <div class="dropdown d-md-block">
-                <a class="btn dropdown-toggle" role="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false">
-                    Оберіть місто
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    {% for city in city_list %}
-                        <a class="dropdown-item" href="#">{{ city }}</a>
-                        <li><a class="dropdown-item" id="{{ city }}" data-target="#{{ city }}-pane" aria-selected="true">{{ city }}</a></li>
-                    {% endfor %}
-                </ul>
+            <select id="city-list" class="form-select" aria-label="Default select example">
+                {% for city in city_list %}
+                    <option value="{{city}}">{{city}}</option>
+                {% endfor %}
+            </select>
+            <div id="weather-details">
             </div>
-            <!----<div class="dropdown-content" id="dropdownContent">
-                <div class="dropdown-pane fade" id="kyiv-pane" role="dropdownpanel" aria-labelledby="kyiv-tab" tabindex="0">kyiv</div>
-                <div class="dropdown-pane fade" id="dnipro-pane" role="dropdownpanel" aria-labelledby="dnipro-tab" tabindex="0">dnipro</div>
-                <div class="dropdown-pane fade" id="lviv-pane" role="dropdownpanel" aria-labelledby="lviv-tab" tabindex="0">lviv</div>
-            </div>-->
-            <p><b>температура: </b><span>{{ weather_info.current.temperature }}</span></p>
+            <!---<p><b>температура: </b><span>{{ weather_info.current.temperature }}</span></p>
             <p><b>вологість: </b><span>{{ weather_info.current.humidity }}</span></p>
             <p><b>тиск: </b><span>{{ weather_info.current.pressure}}</span></p>
             <p><b>вітер: </b><span>{{ weather_info.current.wind_speed}}</span></p>
             <p><b>хмарність: </b><span>{{ weather_info.current.cloudness}}</span></p>
-            <p><b>опади: </b><span>{{ weather_info.current.description}}</span></p>
+            <p><b>опади: </b><span>{{ weather_info.current.description}}</span></p> -->
             <br/>
             <div class="siLinks">
                 <a class="read-more-link" target="_blank" href="https://ua.sinoptik.ua/погода-львів">На сьогодні</a> |
@@ -167,6 +157,7 @@
                 <a class="read-more-link" target="_blank" href="https://ua.sinoptik.ua/погода-львів/10-днів"> 10 днів</a> |
                 <a class="read-more-link" target="_blank" href="https://ua.sinoptik.ua/україна"> в інших містах</a></div>
             </div>
+
         </div>
     </div>
 </div>
