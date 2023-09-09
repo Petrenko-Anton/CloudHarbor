@@ -3,54 +3,103 @@
 <h1>Новини</h1>
 <div class="row">
     <div class="col-8">
-        <ul class="nav nav-tabs" id="myTab" role="tablist">
-            <li class="nav-item">
-                <a class="nav-link active" id="bussiness" data-toggle="tab" href="#bussiness" role="tab" aria-controls="bussiness" aria-selected="true">Бізнес</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" id="politic" data-toggle="tab" href="#politic" role="tab" aria-controls="politic" aria-selected="true">Політика</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" id="world" data-toggle="tab" href="#world" role="tab" aria-controls="world" aria-selected="true">Світ</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" id="sport" data-toggle="tab" href="#sport" role="tab" aria-controls="sport" aria-selected="true">Спорт</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" id="lifestyle" data-toggle="tab" href="#lifestyle" role="tab" aria-controls="lifestyle" aria-selected="true">Стиль життя</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" id="technic" data-toggle="tab" href="#tech" role="tab" aria-controls="tech" aria-selected="true">Техніка</a>
-            </li>
-        </ul>
-        {% for each_news in news %}
-        <div class="tab-content" id="myTabContent">
-            <div class="tab-pane fade show active" id="bussiness" role="tabpanel" aria-labelledby="home-tab">
-                <div class="row">
-                    <div class="col-sm-4">
-                        <img class="news-article-img" src="{{ each_news.img}}">
-                    </div>
-                    <div class="col-sm-8">
-                        <h2> {{ each_news.title }} </h2>
-                        <span> {{ each_news.description }} </span>
-                        <span><a class="read-more-link" target="_blank" href="{{each_news.link}}"> Read more </a></span>
-                    </div>
-                </div>
+        <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                <a class="nav-link active" id="nav-bussiness-tab" data-toggle="tab" data-target="#nav-bussiness" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Бізнес</a>
+                <a class="nav-link" id="nav-politic-tab" data-toggle="tab" data-target="#nav-politic" type="button" role="tab" aria-controls="nav-politic" aria-selected="false">Політика</a>
+                <a class="nav-link" id="nav-world-tab" data-toggle="tab" data-target="#nav-world" type="button" role="tab" aria-controls="nav-world" aria-selected="false">Світ</a>
+                <a class="nav-link" id="nav-sport-tab" data-toggle="tab" data-target="#nav-sport" type="button" role="tab" aria-controls="nav-sport" aria-selected="false">Спорт</a>
+                <a class="nav-link" id="nav-lifestyle-tab" data-toggle="tab" data-target="#nav-lifestyle" type="button" role="tab" aria-controls="nav-lifestyle" aria-selected="false">Стиль життя</a>
+                <a class="nav-link" id="nav-technic-tab" data-toggle="tab" data-target="#nav-technic" type="button" role="tab" aria-controls="nav-technic" aria-selected="false">Техніка</a>
             </div>
-            <div class="tab-pane fade" id="politic" role="tabpanel" aria-labelledby="profile-tab">
-                <div class="row">
-                    <div class="col-sm-4">
-                        <img class="news-article-img" src="{{ each_news.img}}">
+        </nav>
+        <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="nav-bussiness" role="tabpanel" aria-labelledby="nav-bussiness-tab" tabindex="0">
+                {% for each_news in news %}
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <img class="news-article-img" src="{{ each_news.img}}">
+                        </div>
+                        <div class="col-sm-8">
+                            <h2> {{ each_news.title }} bussiness </h2>
+                            <span> {{ each_news.description }} </span>
+                            <span><a class="read-more-link" target="_blank" href="{{each_news.link}}"> Read more </a></span>
+                        </div>
                     </div>
-                    <div class="col-sm-8">
-                        <h2> {{ each_news.title }} </h2>
-                        <span> {{ each_news.description }} </span>
-                        <span><a class="read-more-link" target="_blank" href="{{each_news.link}}"> Read more </a></span>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
-          </div>
-        {% endfor %}
+            <div class="tab-pane fade" id="nav-politic" role="tabpanel" aria-labelledby="nav-politic-tab" tabindex="0">
+                {% for each_news in news %}
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <img class="news-article-img" src="{{ each_news.img}}">
+                        </div>
+                        <div class="col-sm-8">
+                            <h2> {{ each_news.title }} politic </h2>
+                            <span> {{ each_news.description }} </span>
+                            <span><a class="read-more-link" target="_blank" href="{{each_news.link}}"> Read more </a></span>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="tab-pane fade" id="nav-world" role="tabpanel" aria-labelledby="nav-world-tab" tabindex="0">
+                {% for each_news in news %}
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <img class="news-article-img" src="{{ each_news.img}}">
+                        </div>
+                        <div class="col-sm-8">
+                            <h2> {{ each_news.title }} world </h2>
+                            <span> {{ each_news.description }} </span>
+                            <span><a class="read-more-link" target="_blank" href="{{each_news.link}}"> Read more </a></span>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="tab-pane fade" id="nav-sport" role="tabpanel" aria-labelledby="nav-sport-tab" tabindex="0">
+                {% for each_news in news %}
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <img class="news-article-img" src="{{ each_news.img}}">
+                        </div>
+                        <div class="col-sm-8">
+                            <h2> {{ each_news.title }} sport </h2>
+                            <span> {{ each_news.description }} </span>
+                            <span><a class="read-more-link" target="_blank" href="{{each_news.link}}"> Read more </a></span>
+                        </div>
+                    </div>
+                {% endfor %}                
+            </div>
+            <div class="tab-pane fade" id="nav-lifestyle" role="tabpanel" aria-labelledby="nav-lifestyle-tab" tabindex="0">
+                {% for each_news in news %}
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <img class="news-article-img" src="{{ each_news.img}}">
+                        </div>
+                        <div class="col-sm-8">
+                            <h2> {{ each_news.title }} lifestyle </h2>
+                            <span> {{ each_news.description }} </span>
+                            <span><a class="read-more-link" target="_blank" href="{{each_news.link}}"> Read more </a></span>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="tab-pane fade" id="nav-technic" role="tabpanel" aria-labelledby="nav-technic-tab" tabindex="0">
+                {% for each_news in news %}
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <img class="news-article-img" src="{{ each_news.img}}">
+                        </div>
+                        <div class="col-sm-8">
+                            <h2> {{ each_news.title }} technic </h2>
+                            <span> {{ each_news.description }} </span>
+                            <span><a class="read-more-link" target="_blank" href="{{each_news.link}}"> Read more </a></span>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
     </div>
     <div class="col-4">
         <div class="currency-course">
@@ -88,29 +137,27 @@
         </div>
         <div class="weather-block">
             <h3>Прогноз погоди</h3>
-            <div>
-                <div class="dropdown">
-                    <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Оберіть місто
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        {% for city in city_list %}
-                       <a class="dropdown-item" href="#">{{ city }}</a>
-                        {% endfor %}
-                    </div>
-                </div>
-                <p><b>температура: </b><span>{{ weather_info.current.temperature }}</span></p>
-                <p><b>вологість: </b><span>{{ weather_info.current.humidity }}</span></p>
-                <p><b>тиск: </b><span>{{ weather_info.current.pressure}}</span></p>
-                <p><b>вітер: </b><span>{{ weather_info.current.wind_speed}}</span></p>
-                <p><b>хмарність: </b><span>{{ weather_info.current.cloudness}}</span></p>
-                <p><b>опади: </b><span>{{ weather_info.current.description}}</span></p>
-                <div class="siLinks">
-                    <a class="read-more-link" target="_blank" href="https://ua.sinoptik.ua/погода-львів">На сьогодні</a> |
-                    <a class="read-more-link" target="_blank" href="https://ua.sinoptik.ua/погода-львів/завтра"> завтра</a> |
-                    <a class="read-more-link" target="_blank" href="https://ua.sinoptik.ua/погода-львів/10-днів"> 10 днів</a> |
-                    <a class="read-more-link" target="_blank" href="https://ua.sinoptik.ua/україна"> в інших містах</a></div>
-                </div>
+            <select id="city-list" class="form-select" aria-label="Default select example">
+                {% for city in city_list %}
+                    <option value="{{city}}">{{city}}</option>
+                {% endfor %}
+            </select>
+            <div id="weather-details">
+            </div>
+            <!---<p><b>температура: </b><span>{{ weather_info.current.temperature }}</span></p>
+            <p><b>вологість: </b><span>{{ weather_info.current.humidity }}</span></p>
+            <p><b>тиск: </b><span>{{ weather_info.current.pressure}}</span></p>
+            <p><b>вітер: </b><span>{{ weather_info.current.wind_speed}}</span></p>
+            <p><b>хмарність: </b><span>{{ weather_info.current.cloudness}}</span></p>
+            <p><b>опади: </b><span>{{ weather_info.current.description}}</span></p> -->
+            <br/>
+            <div class="siLinks">
+                <a class="read-more-link" target="_blank" href="https://ua.sinoptik.ua/погода-львів">На сьогодні</a> |
+                <a class="read-more-link" target="_blank" href="https://ua.sinoptik.ua/погода-львів/завтра"> завтра</a> |
+                <a class="read-more-link" target="_blank" href="https://ua.sinoptik.ua/погода-львів/10-днів"> 10 днів</a> |
+                <a class="read-more-link" target="_blank" href="https://ua.sinoptik.ua/україна"> в інших містах</a></div>
+            </div>
+
         </div>
     </div>
 </div>

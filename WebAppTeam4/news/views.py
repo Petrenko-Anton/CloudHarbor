@@ -123,3 +123,4 @@ def weather(request):
     city = request.args.get('city')
     weather_feed = ReadWeather('3478743f8ff6ad5d9cae9ea84b3cb414', city)
     render(request, 'news/news.html', {'weather_info': weather_feed.weather_info})
+
