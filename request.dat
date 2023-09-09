@@ -1,0 +1,100 @@
+import json
+import requests
+from bs4 import BeautifulSoup
+from abc import ABC, abstractmethod
+import re
+
+# data = {
+#   "firstname": "alisa",
+#   "secondname": "makusheva",
+#   "email": "nikita@gmail.com",
+#   "dateofbirth": "1986/06/28",
+#   "phonenumber": "+16478619006"
+# }
+
+# headers = {'Content-type': 'application/json'}
+
+# # response = requests.put('http://127.0.0.1:8000/api/contacts/1',
+# #                         data=json.dumps(data))
+# response = requests.get('http://127.0.0.1:8000/api/contacts')
+# print(response.text)
+
+# response = requests.get('http://127.0.0.1:8000/api/contacts/1')
+# print(response.text)
+
+# response = requests.get('http://127.0.0.1:8000/api/contacts/name/kolia')
+# print(response.text)
+
+# response = requests.get('http://127.0.0.1:8000/api/contacts/secondname/putin')
+# print(response.text)
+
+# response = requests.get('http://127.0.0.1:8000/api/contacts/email/nikita@gmail.com')
+# print(response.text)
+
+response = requests.get(
+  "https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5")
+output_list = response.json()
+print("{:8}{:8}{:8}{:8}".format("ccy", "base", "buy", "sale"))
+for currency in output_list:
+  print("{:8}{:8}{:8.4}{:8.5}".format(currency["ccy"], currency["base_ccy"],
+                                      currency["buy"], currency["sale"]))
+
+
+class Document_Base:
+
+  def __init__(self, htmlresponse):
+    self.htmlresponse = htmlresponse
+    self.soup = BeautifulSoup(self.htmlresponse, "lxml")
+
+  @abstractmethod
+  def find_all():
+    pass
+
+
+class page_parser(Document_Base):
+
+  def __init__(self, htmlresponse):
+    Document_Base.__init__(self, htmlresponse)
+
+  def find_all(self):
+    # items = self.execute.find_all(name=self.tag)
+    # output = []
+    # for element in items:
+    #   output.append(element.text)
+    return self.soup.title
+
+class tag_include_exclude:
+  def __init__(self,tag:str, include: str, exclude: str):
+    self.tag=tag
+    self.include = include
+    self.exclude = exclude
+
+  def __call__(self, tag):
+    return tag.has_attr(self.include) and not tag.has_attr(self.exclude) and tag.name == self.tag
+
+def normailize(string:str):
+  output = ""
+  for c in string:
+    if c != '\n' and c != ' ':
+      output+=c
+  return output
+  
+
+def has_href_but_no_class(tag):
+    return tag.has_attr('href') and not tag.has_attr('class') and tag.name == 'a'
+
+response = requests.get("https://www.kyivpost.com/")
+#print(response.text)
+title = page_parser(response.text)
+list = title.soup.find_all('div', class_="content-container")
+for el in list:
+  # print(str(el))
+  again = page_parser(str(el))
+  conditions = tag_include_exclude(tag='a',include='href',exclude='class');
+  links = again.soup.find_all(conditions)
+  # links = again.soup.find_all(has_href_but_no_class)
+  for link in links:
+    print("text: " + normailize(link.text) + " " + "link: " + link['href'])
+    
+#response = requests.delete('http://127.0.0.1:8000/api/contacts/2')
+#response = requests.get('http://127.0.0.1:8000/api/contacts/1')
