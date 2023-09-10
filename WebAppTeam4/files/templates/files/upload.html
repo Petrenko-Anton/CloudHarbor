@@ -12,12 +12,6 @@
             {% csrf_token %}
             <div>
                 <label class="form-label">
-                    <p>Категорія</p>
-                    {{form.category}}
-                </label>
-            </div>
-            <div>
-                <label class="form-label">
                     <p>Файл</p>
                     {{form.path}}
                 </label>
@@ -25,8 +19,7 @@
             <div>
                 <label class="form-label">
                     <p>Опис</p>
-                    <!--{{form.description}}-->
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    {{form.description}}
                 </label>
             </div>
             <button type="submit">Надіслати</button>

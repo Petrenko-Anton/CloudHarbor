@@ -4,7 +4,7 @@ from .models import File
 
 
 class FileForm(ModelForm):
-    description = CharField(max_length=255, widget=TextInput(attrs={"class": "form-control"}))
+    description = CharField(max_length=255,strip=True, empty_value="...", widget=TextInput(attrs={"class": "form-control"}))
     path = FileField(widget=FileInput(attrs={"class": "form-control"}))
 
     class Meta:

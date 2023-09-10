@@ -6,12 +6,15 @@ from django.conf.urls.static import static
 app_name = "files"
 
 urlpatterns = [
-    path('', views.main, name='root'),
     path('upload/', views.upload, name='upload'),
-    path('files/', views.files, name='files'),
-    path('files/edit/<int:file_id>', views.edit, name='edit'),
-    path('files/view/<int:file_id>', views.detail, name='detail'),
-    path('files/remove/<int:file_id>', views.remove, name='remove'),
+
+    path('view/<int:file_id>', views.detail, name='detail'),
+
+
+    path('', views.files, name='files'),
+    path('edit/<int:file_id>', views.edit, name='edit'),
+    path('remove/<int:file_id>', views.remove, name='remove'),
+
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
