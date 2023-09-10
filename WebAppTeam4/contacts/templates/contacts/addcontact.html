@@ -46,10 +46,12 @@
       <div>
          <label  class="form-label">
                <p>Коментар</p>
-               <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+               {{form.description}}
          </label>
+         <span>{{form.errors.description}}</span>
       </div>
       <div>
+
          <button type="submit">Додати</button>
      </div>
    </form>

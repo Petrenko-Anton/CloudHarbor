@@ -7,6 +7,7 @@
 </a>
 <div class="form-block">
    <h2>Редагувати контакт</h2>
+   <br/>
    {%if form.errors and form.non_field_errors %}
    <span class="alert alert-danger" role="alert">{{form.non_field_errors}}</span>
    {% endif %}
@@ -44,12 +45,15 @@
          <span>{{form.errors.birth_date}}</span>
       </div>
       <div>
+
          <label  class="form-label">
                <p>Коментар</p>
-               <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+               {{form.description}}
          </label>
+         <span>{{form.errors.description}}</span>
       </div>
       <div>
+
          <button type="submit">Зберегти</button>
       </div>
    </form>
