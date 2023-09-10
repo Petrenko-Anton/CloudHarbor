@@ -1,54 +1,43 @@
 {%extends 'contacts/base.html' %}
 
 {% block content %}
-<h1>Мої файли</h1>
-<div class="container text-center">
-  <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-    <form class="d-flex" role="search">
-      <a class="btn-main" href="{% url 'files:upload' %}">
-        <svg class="card-icon" xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 0 640 512">
-          <path d="M144 480C64.5 480 0 415.5 0 336c0-62.8 40.2-116.2 96.2-135.9c-.1-2.7-.2-5.4-.2-8.1c0-88.4 71.6-160 160-160c59.3 0 111 32.2 138.7 80.2C409.9 102 428.3 96 448 96c53 0 96 43 96 96c0 12.2-2.3 23.8-6.4 34.6C596 238.4 640 290.1 640 352c0 70.7-57.3 128-128 128H144zm79-217c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l39-39V392c0 13.3 10.7 24 24 24s24-10.7 24-24V257.9l39 39c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-80-80c-9.4-9.4-24.6-9.4-33.9 0l-80 80z"/>
-        </svg>
-      </a>
-      <a class="btn-main" href="https://www.dropbox.com/home" target="_blank">
-        <svg class="card-icon" xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 0 528 512">
-          <path d="M264.4 116.3l-132 84.3 132 84.3-132 84.3L0 284.1l132.3-84.3L0 116.3 132.3 32l132.1 84.3zM131.6 395.7l132-84.3 132 84.3-132 84.3-132-84.3zm132.8-111.6l132-84.3-132-83.6L395.7 32 528 116.3l-132.3 84.3L528 284.8l-132.3 84.3-131.3-85z"/>
-        </svg>
-      </a>
-      <input class="search-form" type="search" placeholder="Введіть назву файлу" aria-label="Search">
-      <a class="btn-main" href="#" type="submit">
-        <svg class="card-icon" xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 0 512 512">
-          <path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"/>
-        </svg>
-      </a>
-    </form>
-  </div>
-  <div class="filter-file-block">
-    <ul class="nav nav-pills justify-content-center" id="pills-tab" role="tablist">
-      <li class="nav-item" role="presentation">
-        <a class="nav-link active" id="pills-all-tab" data-toggle="pill" data-target="#pills-all" type="button" role="tab" aria-controls="pills-all" aria-selected="true">Всі файли</a>
-      </li>
-      <li class="nav-item" role="presentation">
-        <a class="nav-link" id="pills-archives-tab" data-toggle="pill" data-target="#pills-archives" type="button" role="tab" aria-controls="pills-archives" aria-selected="false">Архіви</a>
-      </li>
-      <li class="nav-item" role="presentation">
-        <a class="nav-link" id="pills-audio-tab" data-toggle="pill" data-target="#pills-audio" type="button" role="tab" aria-controls="pills-audio" aria-selected="false">Аудіо-файли</a>
-      </li>
-      <li class="nav-item" role="presentation">
-        <a class="nav-link" id="pills-video-tab" data-toggle="pill" data-target="#pills-video" type="button" role="tab" aria-controls="pills-video" aria-selected="false">Відео</a>
-      </li>
-      <li class="nav-item" role="presentation">
-        <a class="nav-link" id="pills-documents-tab" data-toggle="pill" data-target="#pills-documents" type="button" role="tab" aria-controls="pills-documents" aria-selected="false">Документи</a>
-      </li>
-      <li class="nav-item" role="presentation">
-        <a class="nav-link" id="pills-images-tab" data-toggle="pill" data-target="#pills-images" type="button" role="tab" aria-controls="pills-images" aria-selected="false">Зображення</a>
-      </li>
-      <li class="nav-item" role="presentation">
-        <a class="nav-link" id="pills-others-tab" data-toggle="pill" data-target="#pills-others" type="button" role="tab" aria-controls="pills-others" aria-selected="false">Інші</a>
-      </li>
-    </ul>
-  </div>
+  <h1>Мої файли</h1>
+  <div class="container text-center">
     
+    <div class="filter-file-block">
+      <ul class="nav nav-pills justify-content-center" id="pills-tab" role="tablist">
+        <li class="nav-item" role="presentation">
+          <a class="nav-link active" id="pills-all-tab" data-toggle="pill" data-target="#pills-all" type="button" role="tab" aria-controls="pills-all" aria-selected="true">Всі файли</a>
+        </li>
+        <li class="nav-item" role="presentation">
+          <a class="nav-link" id="pills-archives-tab" data-toggle="pill" data-target="#pills-archives" type="button" role="tab" aria-controls="pills-archives" aria-selected="false">Архіви</a>
+        </li>
+        <li class="nav-item" role="presentation">
+          <a class="nav-link" id="pills-audio-tab" data-toggle="pill" data-target="#pills-audio" type="button" role="tab" aria-controls="pills-audio" aria-selected="false">Аудіо-файли</a>
+        </li>
+        <li class="nav-item" role="presentation">
+          <a class="nav-link" id="pills-video-tab" data-toggle="pill" data-target="#pills-video" type="button" role="tab" aria-controls="pills-video" aria-selected="false">Відео</a>
+        </li>
+        <li class="nav-item" role="presentation">
+          <a class="nav-link" id="pills-documents-tab" data-toggle="pill" data-target="#pills-documents" type="button" role="tab" aria-controls="pills-documents" aria-selected="false">Документи</a>
+        </li>
+        <li class="nav-item" role="presentation">
+          <a class="nav-link" id="pills-images-tab" data-toggle="pill" data-target="#pills-images" type="button" role="tab" aria-controls="pills-images" aria-selected="false">Зображення</a>
+        </li>
+        <li class="nav-item" role="presentation">
+          <a class="nav-link" id="pills-others-tab" data-toggle="pill" data-target="#pills-others" type="button" role="tab" aria-controls="pills-others" aria-selected="false">Інші</a>
+        </li>
+        <li>
+          <a class="btn-main" href="{% url 'files:upload' %}">
+            <svg class="card-icon" xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 0 640 512">
+              <path d="M144 480C64.5 480 0 415.5 0 336c0-62.8 40.2-116.2 96.2-135.9c-.1-2.7-.2-5.4-.2-8.1c0-88.4 71.6-160 160-160c59.3 0 111 32.2 138.7 80.2C409.9 102 428.3 96 448 96c53 0 96 43 96 96c0 12.2-2.3 23.8-6.4 34.6C596 238.4 640 290.1 640 352c0 70.7-57.3 128-128 128H144zm79-217c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l39-39V392c0 13.3 10.7 24 24 24s24-10.7 24-24V257.9l39 39c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-80-80c-9.4-9.4-24.6-9.4-33.9 0l-80 80z"/>
+            </svg>
+          </a>
+        </li>
+      </ul>
+      
+    </div>
+      
     <div class="tab-content" id="pills-tabContent">
       <div class="tab-pane fade show active" id="pills-all" role="tabpanel" aria-labelledby="pills-all-tab">
         <table class="table">
@@ -360,6 +349,6 @@
         </table>
       </div>
     </div>
-</div>
+  </div>
 
 {% endblock %}
