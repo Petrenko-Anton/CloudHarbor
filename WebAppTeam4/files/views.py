@@ -4,6 +4,7 @@ from django.shortcuts import render, redirect
 from django.conf import settings
 from .forms import FileForm
 from .models import File
+from .utils import get_file_category
 
 # ключ API тимчасово тут
 dbx = dropbox.Dropbox(settings.DROP_BOX)
@@ -14,13 +15,25 @@ def main(request):
 
 
 # Функція завантаження файлів
+# def upload(request):
+#     form = FileForm(instance=File())
+#     if request.method == 'POST':
+#         form = FileForm(request.POST, request.FILES, instance=File())
+#         if form.is_valid():
+#             file = form.save()
 def upload(request):
     form = FileForm(instance=File())
     if request.method == 'POST':
         form = FileForm(request.POST, request.FILES, instance=File())
         if form.is_valid():
-            file = form.save()
+            file = form.save(commit=False)
+            if file.path:
+                # Отримуємо категорію за допомогою get_file_category
+                category = get_file_category(file.path.name)
+                file.category = category
 
+                # Зберігаємо файл
+                file.save()
             # Шлях до файлу на Dropbox та локального файлу
             dropbox_path = f'/uploads/{file.path.name}'
             local_path = os.path.join(settings.MEDIA_ROOT, file.path.name)
@@ -36,7 +49,7 @@ def upload(request):
 # Функція відображення файлів
 def files(request):
     file = File.objects.all()
-    return render(request, 'files/files.html', context={"title": "Files", "files": file, "media": settings.MEDIA_URL})
+    return render(request, 'files/files.html', context={"title": "Files", "files": file, "media": settings.MEDIA_ROOT})
 
 
 # Функція видалення файлів
@@ -60,4 +73,4 @@ def edit(request, file_id):
 
     file = File.objects.filter(pk=file_id).first()
     return render(request, "files/edit.html",
-                  context={"title": "Files", "file": file, "media": settings.MEDIA_URL})
+                  context={"title": "Files", "file": file, "media": settings.MEDIA_ROOT})
