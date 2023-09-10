@@ -11,5 +11,5 @@ class Contact (models.Model):
     phone = models.CharField(max_length=16)
     email = models.EmailField()
     is_favorite = models.BooleanField(default=False)
-    description = models.TextField()
+    description = models.TextField(blank=True, null=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, default=1)

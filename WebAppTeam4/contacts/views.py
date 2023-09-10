@@ -83,9 +83,8 @@ class detailcontact(View):
         return render(request, self.template_name, {"contact": contact})
 
 
-
 @method_decorator(login_required, name="dispatch")
-class editcontact(View):
+class edit_contact(View):
     template_name = "contacts/edit.html"
     # def dispatch(self, request, *args, **kwargs):
     #     return super().dispatch(request, *args, **kwargs)
@@ -129,7 +128,7 @@ class editcontact(View):
 
 # add contact_id in params
 @method_decorator(login_required, name="dispatch")
-class deletecontact(View):
+class delete_contact(View):
     template_name = "contacts/delete.html"
 
     def get(self, request, contact_id):

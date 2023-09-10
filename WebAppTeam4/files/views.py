@@ -1,5 +1,6 @@
 import os
 import dropbox
+from django.http import FileResponse
 from django.shortcuts import render, redirect
 from django.conf import settings
 from .forms import FileForm
@@ -32,12 +33,14 @@ def upload(request):
                 category = get_file_category(file.path.name)
                 file.category = category
                 # Зберігаємо файл
+                file.user = request.user
                 file.save()
             # Шлях до файлу на Dropbox та локального файлу
             dropbox_path = f'/uploads/{file.path.name}'
             local_path = os.path.join(settings.MEDIA_ROOT, file.path.name)
             size = get_file_size(local_path)
             file.size = size
+            file.dropbox_path = dropbox_path
             file.save()
             # Завантаження файла на Dropbox
             with open(local_path, 'rb') as f:
@@ -60,22 +63,30 @@ def files(request):
 # Функція видалення файлів
 @login_required()
 def remove(request, file_id):
-    file = File.objects.filter(pk=file_id)
+    file = File.objects.filter(pk=file_id).first()
+    print(file_id, file.dropbox_path)
     try:
-        os.unlink(os.path.join(settings.MEDIA_ROOT, str(file.first().path)))
+        os.unlink(os.path.join(settings.MEDIA_ROOT, str(file.path)))
     except OSError as e:
         print(e)
+    dbx.files_delete_v2(file.dropbox_path)
     file.delete()
     return redirect(to='files:files')
 
+@login_required()
+def download(request, file_id):
+    file = File.objects.filter(pk=file_id).first()
+    dbx.files_download_to_file(os.path.join(settings.MEDIA_ROOT, file.orig_name), file.dropbox_path)
+    local_path = os.path.join(settings.MEDIA_ROOT, file.orig_name)
+    response = FileResponse(open(local_path, 'rb'))
+    return response
 
 # Функція редагування файлів
 @login_required()
 def edit(request, file_id):
     if request.method == 'POST':
         description = request.POST.get('description')
-        category = request.POST.get('category')
-        File.objects.filter(pk=file_id).update(description=description, category=category)
+        File.objects.filter(pk=file_id).first().update(description=description)
         return redirect(to='files:files')
 
     file = File.objects.filter(pk=file_id).first()

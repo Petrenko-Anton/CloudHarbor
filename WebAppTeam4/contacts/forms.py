@@ -31,7 +31,7 @@ class ContactForm(ModelForm):
     birth_date = DateField(
         required=True, widget=SelectDateWidget(months=MONTHS, 
                                                years=[x for x in range(date.today().year - 100, date.today().year + 1)]))
-    description = CharField(max_length=255, widget=forms.Textarea(
+    description = CharField(required = False, max_length=255, widget=forms.Textarea(
         attrs={'class': "form-control"}))
 
     class Meta:

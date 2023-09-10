@@ -74,7 +74,7 @@
                       <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                      <p>Після підтвердження файл {{file.orig_name}} буде видалено з диску. Ви впевнені, що хочете видалити файл?</p>
+                      <p>Після підтвердження файл {{file.id}} {{file.orig_name}} буде видалено з диску. Ви впевнені, що хочете видалити файл?</p>
                     </div>
                     <div class="modal-footer mx-auto">
                       <a href="{% url 'files:remove' file.id %}"  type="button" class="btn">Так</a>
@@ -115,11 +115,11 @@
                 <div class="modal-dialog modal-dialog-centered">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h5 class="modal-title">Видалення файлу {{file.id}}</h5>
+                      <h5 class="modal-title">Видалення файлу</h5>
                       <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                      <p>Після підтвердження файл {{file.orig_name}} буде видалено з диску. Ви впевнені, що хочете видалити файл?</p>
+                      <p>Після підтвердження файл {{file.id}} {{file.orig_name}} буде видалено з диску. Ви впевнені, що хочете видалити файл?</p>
                     </div>
                     <div class="modal-footer mx-auto">
                       <a href="{% url 'files:remove' file.id %}"  type="button" class="btn">Так</a>
@@ -165,7 +165,7 @@
                       <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                      <p>Після підтвердження файл {{file.orig_name}} буде видалено з диску. Ви впевнені, що хочете видалити файл?</p>
+                      <p>Після підтвердження файл {{file.id}} {{file.orig_name}} буде видалено з диску. Ви впевнені, що хочете видалити файл?</p>
                     </div>
                     <div class="modal-footer mx-auto">
                       <a href="{% url 'files:remove' file.id %}"  type="button" class="btn">Так</a>

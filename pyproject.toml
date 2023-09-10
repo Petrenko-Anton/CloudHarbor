@@ -21,6 +21,7 @@ getuseragent = "^0.0.7"
 python-dotenv = "^1.0.0"
 redis-lru = "^0.1.2"
 redis = "^5.0.0"
+django-storages = {extras = ["dropbox"], version = "^1.14"}
 
 
 

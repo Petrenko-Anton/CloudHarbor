@@ -15,7 +15,10 @@ import os
 from pathlib import Path
 
 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+from django.core.files.storage import storages
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 env = environ.Env()
@@ -93,6 +96,7 @@ DATABASES = {
         'PORT': env('DATABASE_PORT'),
     }
 }
+
 
 REDIS_HOST=env('REDIS_HOST')
 REDIS_PORT=env('REDIS_PORT')

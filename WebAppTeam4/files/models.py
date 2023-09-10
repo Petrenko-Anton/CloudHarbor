@@ -15,8 +15,9 @@ def update_filename(instance, filename):
 # Create your models here.
 class File(models.Model):
     orig_name = models.CharField(max_length=255)
-    description = models.CharField(max_length=255)
+    description = models.CharField(max_length=255, blank=True, null=True)
     path = models.FileField(upload_to=update_filename)
+    dropbox_path = models.CharField(default="")
     category = models.CharField(max_length=255, blank=True)
     size = models.CharField(default="2Кб")
     user = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
