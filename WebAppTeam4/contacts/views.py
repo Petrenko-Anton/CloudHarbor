@@ -34,8 +34,18 @@ class contacts(View):
         return render(request, self.template_name, {"contacts": contacts, "form": search_form})
 
 
-# add contact_id in params
+@method_decorator(login_required, name="dispatch")
+class birthlist(View):
+    template_name = "contacts/contacts.html"
 
+    def get(self, request, *args, **kwargs):
+        search_form = SearchContactNameForm()
+        contacts = (
+            Contact.objects.filter(user=request.user).all()
+            if request.user.is_authenticated
+            else []
+        )
+        return render(request, self.template_name, {"contacts": contacts, "form": search_form})
 
 
 @method_decorator(login_required, name="dispatch")
@@ -61,17 +71,6 @@ class add_contact(View):
         else:
             # messages.error(request, 'Input error')
             return render(request, self.template_name, {"form": form})
-
-
-# def addcontact(request):
-#     form_class = ContactForm
-#     return render(request, "contacts/addcontact.html", {"form": ContactForm()})
-
-# add contact_id in params
-
-
-# def detailcontact(request, contact_id):
-#     return render(request, "contacts/detail.html")
 
 
 @method_decorator(login_required, name="dispatch")
