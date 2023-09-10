@@ -21,11 +21,8 @@ MONTHS = {
 
 
 class ContactForm(ModelForm):
-<<<<<<< Updated upstream
-=======
     date_range = 70
     this_year = date.today().year
->>>>>>> Stashed changes
 
     first_name = CharField(max_length=100, widget=TextInput(
         attrs={'class': "form-control"}))
@@ -35,20 +32,6 @@ class ContactForm(ModelForm):
                        widget=EmailInput(attrs={'class': "form-control"}))
     phone = CharField(max_length=100, widget=TextInput(
         attrs={'class': "form-control"}))
-<<<<<<< Updated upstream
-    # birth_date = DateField(required=True, widget=DateInput(
-    #     attrs={'class': "form-control"}))
-    birth_date = DateField(
-        required=True, widget=SelectDateWidget(months=MONTHS, years=[x for x in range(date.today().year - 100, date.today().year + 1)]))
-
-########################################################################################
-#    comment = CharField(max_length=100, widget=TextInput(attrs={'class': "form-control"}))
-# it was commented becasue html does not correspond to this form that is why it does not work if not commented
-
-    class Meta:
-        model = Contact
-        fields = ('first_name', 'last_name', 'email', 'phone', 'birth_date')
-=======
     birth_date = DateField(required=True, widget=SelectDateWidget(
         months=MONTHS, years=range(this_year - date_range, this_year+1)))
     description = CharField(max_length=255, widget=forms.Textarea(
@@ -58,7 +41,6 @@ class ContactForm(ModelForm):
         model = Contact
         fields = ('first_name', 'last_name', 'email',
                   'phone', 'birth_date', 'description')
->>>>>>> Stashed changes
 
 
 class SearchContactNameForm(forms.Form):

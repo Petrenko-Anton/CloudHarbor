@@ -148,54 +148,19 @@ class deletecontact(View):
 
 
 @method_decorator(login_required, name="dispatch")
-class contact_search_by_email(View):
+class contact_search(View):
     template_name = "contacts/contacts.html"
 
     def get(self, request, *args, **kwargs):
-        form = SearchContactEmailForm()
-        return render(request, "contacts/contact_search_by_email.html", {"form": form})
-
-    def post(self, request, *args, **kwargs):
-        form = SearchContactEmailForm(request.POST)
-        if form.is_valid():
-            search_email = form.cleaned_data["search_email"]
-            contacts = (Contact.objects.filter(user=request.user, email=search_email).all(
-            ) if request.user.is_authenticated else [])
-            return render(request, self.template_name, {"contacts": contacts})
-        else:
-            form = SearchContactEmailForm()
-            return render(request, "contacts/contact_search_by_email.html", {"form": form})
-
-
-@method_decorator(login_required, name="dispatch")
-class contact_search_by_name(View):
-    template_name = "contacts/contacts.html"
-
-    def get(self, request, *args, **kwargs):
-<<<<<<< Updated upstream
-        form = SearchContactNameForm()
-        return render(request, "contacts/contact_search_by_name.html", {"form": form})
-
-    def post(self, request, *args, **kwargs):
-        form = SearchContactNameForm(request.POST)
-        if form.is_valid():
-            name = form.cleaned_data["search_name"]
-            contacts = (Contact.objects.filter(user=request.user, first_name=name).all(
-=======
         form = SearchContactNameForm(request.GET)
         if form.is_valid():
             name = form.cleaned_data["search_name"]
             contacts = (Contact.objects.filter(Q(user=request.user), Q(first_name=name) | Q(email=name) | Q(last_name=name)).all(
->>>>>>> Stashed changes
             ) if request.user.is_authenticated else [])
             return render(request, self.template_name, {"contacts": contacts, "form": form})
         else:
             form = SearchContactNameForm()
-<<<<<<< Updated upstream
-            return render(request, "contacts/contact_search_by_name.html", {"form": form})
-=======
             return render(request, "contacts/error.html", {"message": "Something went wrong"})
->>>>>>> Stashed changes
 
 
 # from Django documentation
