@@ -147,7 +147,6 @@ def news():
         print(cat)
         url = f'https://kurs.com.ua/novosti/rss/feed-{cat_dict[cat]}.xml'
         news_feed.extend(ReadRss(url, cat, headers).articles_dicts)
-        print(news_feed)
     return news_feed
 
 

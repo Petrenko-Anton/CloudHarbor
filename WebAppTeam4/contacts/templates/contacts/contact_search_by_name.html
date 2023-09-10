@@ -9,7 +9,7 @@
     До списку контактів</a>
 <div class="form-block">
     <h2>Search</h2>
-    <br />
+    <br/>
     <form action="{% url 'contacts:contact_search_by_name' %}" method="post">
         {% csrf_token %}
         <label for="search_name">Ім'я 

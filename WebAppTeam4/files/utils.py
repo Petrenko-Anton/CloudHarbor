@@ -15,6 +15,20 @@ list_musics = ['.aac', '.m4a', '.mp3', '.ogg', '.wav', '.wma', '.amr', '.midi', 
 list_programs = ['.html', '.htm', '.xhtml', '.exe', '.msi', '.py', '.pyw', '.apk', '.npbk', '.torrent', '.fig']
 
 
+def convert_bytes(size):
+    """ Convert bytes to KB, or MB or GB"""
+    for x in ['bytes', 'KB', 'MB', 'GB', 'TB']:
+        if size < 1024.0:
+            return "%3.1f %s" % (size, x)
+        size /= 1024.0
+
+
+def get_file_size(file_name):
+    f_size = os.path.getsize(file_name)
+    return convert_bytes(f_size)
+
+
+
 def get_file_category(file_name):
     ext = os.path.splitext(file_name)[1].lower()
 
@@ -32,11 +46,3 @@ def get_file_category(file_name):
         return 'Програма'
     else:
         return 'Інше'
-
-
-
-
-
-
-
-

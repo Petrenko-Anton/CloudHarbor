@@ -135,7 +135,7 @@
                             {% endfor %}
                         {% endfor %}
                     </tr>
-                    <{% endfor %}
+                    {% endfor %}
                 </tbody>
             </table>
         </div>
@@ -148,19 +148,13 @@
             </select>
             <div id="weather-details">
             </div>
-            <!---<p><b>температура: </b><span>{{ weather_info.current.temperature }}</span></p>
-            <p><b>вологість: </b><span>{{ weather_info.current.humidity }}</span></p>
-            <p><b>тиск: </b><span>{{ weather_info.current.pressure}}</span></p>
-            <p><b>вітер: </b><span>{{ weather_info.current.wind_speed}}</span></p>
-            <p><b>хмарність: </b><span>{{ weather_info.current.cloudness}}</span></p>
-            <p><b>опади: </b><span>{{ weather_info.current.description}}</span></p> -->
             <br/>
-{#            <div class="siLinks">#}
-{#                <a class="read-more-link" target="_blank" href="https://ua.sinoptik.ua/погода-львів">На сьогодні</a> |#}
-{#                <a class="read-more-link" target="_blank" href="https://ua.sinoptik.ua/погода-львів/завтра"> завтра</a> |#}
-{#                <a class="read-more-link" target="_blank" href="https://ua.sinoptik.ua/погода-львів/10-днів"> 10 днів</a> |#}
-{#                <a class="read-more-link" target="_blank" href="https://ua.sinoptik.ua/україна"> в інших містах</a></div>#}
-{#            </div>#}
+            <div class="siLinks">
+                <a class="read-more-link" target="_blank" href="https://ua.sinoptik.ua/погода-львів">На сьогодні</a>
+                <a class="read-more-link" target="_blank" href="https://ua.sinoptik.ua/погода-львів/завтра"> завтра</a>
+                <a class="read-more-link" target="_blank" href="https://ua.sinoptik.ua/погода-львів/10-днів"> 10 днів</a>
+                <a class="read-more-link" target="_blank" href="https://ua.sinoptik.ua/україна"> в інших містах</a></div>
+            </div>
 
         </div>
     </div>
