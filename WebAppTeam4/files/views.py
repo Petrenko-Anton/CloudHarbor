@@ -82,5 +82,5 @@ def detail(request, file_id):
         category = request.GET.get('category')
 
     file = File.objects.filter(pk=file_id).first()
-    return render(request, "files/edit.html",
+    return render(request, "files/detail.html",
                   context={"title": "Files", "file": file, "media": settings.MEDIA_ROOT})
