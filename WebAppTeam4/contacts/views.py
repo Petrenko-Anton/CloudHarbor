@@ -9,6 +9,7 @@ from django.views import View
 
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
+from django.db.models import Q
 # Create your views here.
 
 
@@ -24,14 +25,17 @@ class contacts(View):
     template_name = "contacts/contacts.html"
 
     def get(self, request, *args, **kwargs):
+        search_form = SearchContactNameForm()
         contacts = (
             Contact.objects.filter(user=request.user).all()
             if request.user.is_authenticated
             else []
         )
-        return render(request, self.template_name, {"contacts": contacts})
+        return render(request, self.template_name, {"contacts": contacts, "form": search_form})
+
 
 # add contact_id in params
+
 
 
 @method_decorator(login_required, name="dispatch")
@@ -73,13 +77,10 @@ class add_contact(View):
 @method_decorator(login_required, name="dispatch")
 class detailcontact(View):
     template_name = "contacts/detail.html"
-    form_class = ContactForm
-    initial = {"key": "value"}
 
     # def dispatch(self, request, *args, **kwargs):
     #     return super().dispatch(request, *args, **kwargs)
     def get(self, request, contact_id):
-        form = self.form_class(initial=self.initial)
         contact = Contact.objects.get(pk=contact_id)
         return render(request, self.template_name, {"contact": contact})
 # add contact_id in params
@@ -98,6 +99,7 @@ class editcontact(View):
                             "email": contact.email,
                             "birth_date": contact.birth_date,
                             "phone": contact.phone,
+                            "description": contact.description,
                             }
 
         form = ContactForm(initial=default_settings)
@@ -116,7 +118,8 @@ class editcontact(View):
                 phone=updated_contact.phone,
                 first_name=updated_contact.first_name,
                 last_name=updated_contact.last_name,
-                birth_date=updated_contact.birth_date)
+                birth_date=updated_contact.birth_date,
+                description=updated_contact.description)
 
             return redirect(to="contacts:contacts")
         else:
@@ -169,6 +172,7 @@ class contact_search_by_name(View):
     template_name = "contacts/contacts.html"
 
     def get(self, request, *args, **kwargs):
+<<<<<<< Updated upstream
         form = SearchContactNameForm()
         return render(request, "contacts/contact_search_by_name.html", {"form": form})
 
@@ -177,11 +181,21 @@ class contact_search_by_name(View):
         if form.is_valid():
             name = form.cleaned_data["search_name"]
             contacts = (Contact.objects.filter(user=request.user, first_name=name).all(
+=======
+        form = SearchContactNameForm(request.GET)
+        if form.is_valid():
+            name = form.cleaned_data["search_name"]
+            contacts = (Contact.objects.filter(Q(user=request.user), Q(first_name=name) | Q(email=name) | Q(last_name=name)).all(
+>>>>>>> Stashed changes
             ) if request.user.is_authenticated else [])
-            return render(request, self.template_name, {"contacts": contacts})
+            return render(request, self.template_name, {"contacts": contacts, "form": form})
         else:
             form = SearchContactNameForm()
+<<<<<<< Updated upstream
             return render(request, "contacts/contact_search_by_name.html", {"form": form})
+=======
+            return render(request, "contacts/error.html", {"message": "Something went wrong"})
+>>>>>>> Stashed changes
 
 
 # from Django documentation

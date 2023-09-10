@@ -13,4 +13,4 @@ RUN poetry config virtualenvs.create false && poetry install --only main
 COPY . .
 EXPOSE 8000
 
-CMD ["python","webgroup4/manage.py","runserver","0.0.0.0:8000"]
+CMD ["python","WebAppTeam4/manage.py","runserver","0.0.0.0:8000"]
