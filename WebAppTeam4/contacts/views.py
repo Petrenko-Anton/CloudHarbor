@@ -72,27 +72,16 @@ class add_contact(View):
             return render(request, self.template_name, {"form": form})
 
 
-# def addcontact(request):
-#     form_class = ContactForm
-#     return render(request, "contacts/addcontact.html", {"form": ContactForm()})
-
-# add contact_id in params
-
-
-# def detailcontact(request, contact_id):
-#     return render(request, "contacts/detail.html")
 
 
 @method_decorator(login_required, name="dispatch")
 class detailcontact(View):
     template_name = "contacts/detail.html"
 
-    # def dispatch(self, request, *args, **kwargs):
-    #     return super().dispatch(request, *args, **kwargs)
     def get(self, request, contact_id):
         contact = Contact.objects.get(pk=contact_id)
         return render(request, self.template_name, {"contact": contact})
-# add contact_id in params
+
 
 
 @method_decorator(login_required, name="dispatch")
@@ -136,10 +125,7 @@ class editcontact(View):
             return render(request, self.template_name, {"form": form, "contact": contact})
 
 
-# def editcontact(request, contact_id):
-#     form_class = ContactForm
-#     contact = Contact.objects.get(pk=contact_id)
-#     return render(request, "contacts/edit.html", {"form": ContactForm(), "contact": contact})
+
 
 # add contact_id in params
 @method_decorator(login_required, name="dispatch")
@@ -181,7 +167,7 @@ class contact_search_by_name(View):
     template_name = "contacts/contacts.html"
 
     def get(self, request, *args, **kwargs):
-<<<<<<< Updated upstream
+
         form = SearchContactNameForm()
         return render(request, "contacts/contact_search_by_name.html", {"form": form})
 
@@ -190,22 +176,38 @@ class contact_search_by_name(View):
         if form.is_valid():
             name = form.cleaned_data["search_name"]
             contacts = (Contact.objects.filter(user=request.user, first_name=name).all(
-=======
-        form = SearchContactNameForm(request.GET)
-        if form.is_valid():
-            name = form.cleaned_data["search_name"]
-            contacts = (Contact.objects.filter(Q(user=request.user), Q(first_name=name) | Q(email=name) | Q(last_name=name)).all(
->>>>>>> Stashed changes
+
             ) if request.user.is_authenticated else [])
             return render(request, self.template_name, {"contacts": contacts, "form": form})
         else:
             form = SearchContactNameForm()
-<<<<<<< Updated upstream
-            return render(request, "contacts/contact_search_by_name.html", {"form": form})
-=======
-            return render(request, "contacts/error.html", {"message": "Something went wrong"})
->>>>>>> Stashed changes
 
+            return render(request, "contacts/contact_search_by_name.html", {"form": form})
+
+            # return render(request, "contacts/error.html", {"message": "Something went wrong"})
+
+
+@method_decorator(login_required, name="dispatch")
+class contact_search(View):
+    template_name = "contacts/contacts.html"
+
+    def get(self, request, *args, **kwargs):
+
+        form = SearchContactNameForm()
+        return render(request, "contacts/contact_search_by_name.html", {"form": form})
+
+    def post(self, request, *args, **kwargs):
+        form = SearchContactNameForm(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data["search_name"]
+            contacts = (Contact.objects.filter(user=request.user, first_name=name).all(
+
+            ) if request.user.is_authenticated else [])
+            return render(request, self.template_name, {"contacts": contacts, "form": form})
+        else:
+            form = SearchContactNameForm()
+
+            return render(request, "contacts/contact_search_by_name.html", {"form": form})
 
 # from Django documentation
 # b = Blog.objects.get(pk=1)

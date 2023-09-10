@@ -1,6 +1,7 @@
 from django.urls import path
 
-from .views import add_contact, index, contacts, editcontact, deletecontact, detailcontact, contact_search_by_name, contact_search_by_email
+from .views import add_contact, index, contacts, editcontact, deletecontact, detailcontact, contact_search_by_name, \
+    contact_search_by_email, birthlist, contact_search
 
 app_name = 'contacts'
 
