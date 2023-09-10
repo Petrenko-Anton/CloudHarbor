@@ -1,0 +1,37 @@
+{% extends 'contacts/base.html' %}
+
+{% block content %}
+<h1>Деталі про файл</h1>
+
+<table class="table table-bordered">
+    <thead>
+      <tr>
+        <th scope="col">Параметри</th>
+        <th scope="col">Дані</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Вид</td>
+        <td><img src="{{file.path.url}}" class="card-img-top" alt="file"></td>
+      </tr>
+      <tr>
+        <td>Назва</td>
+        <td>{{file.path.url}}</td>
+      </tr>
+      <tr>
+        <td>Категорія</td>
+        <td>{{file.category}}</td>
+      </tr>
+      <tr>
+        <td>Розмір</td>
+        <td>{{file.size}}</td>
+      </tr>
+      <tr>
+        <td>Опис</td>
+        <td>{{file.description}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+{% endblock %}

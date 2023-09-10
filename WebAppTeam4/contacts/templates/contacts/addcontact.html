@@ -14,19 +14,19 @@
       {% csrf_token %}
       <div>
          <label  class="form-label">Ім'я
-            {{ form.first_name }}
+            {{form.first_name}}
          </label>
          <span>{{form.errors.first_name}}</span>
       </div>
       <div>
-         <label  class="form-label">Прізвище
-            {{ form.last_name }}
+         <label class="form-label">Прізвище
+            {{form.last_name}}
          </label>
          <span>{{form.errors.last_name}}</span>
       </div>
       <div>
          <label  class="form-label">Email
-            {{ form.email }}
+            {{form.email}}
          </label>
          <span>{{form.errors.email}}</span>
       </div>
@@ -39,7 +39,7 @@
       <div>
          <label  class="form-label">
                <p>Дата народження</p>
-               {{ form.birth_date }}
+               {{form.birth_date}}
          </label>
          <span>{{form.errors.birth_date}}</span>
       </div>
@@ -51,7 +51,6 @@
          <span>{{form.errors.description}}</span>
       </div>
       <div>
-
          <button type="submit">Додати</button>
      </div>
    </form>
