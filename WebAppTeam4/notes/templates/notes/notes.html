@@ -1,4 +1,4 @@
-{%extends 'contacts/base.html' %}
+{%extends 'contacts/base.html' %} {% load extract_tags %}
 
 {% block content %}
     <h1>Мої нотатки</h1>
@@ -34,6 +34,10 @@
                                 </div>
                         </div>
                         <p class="card-text">{{ note.description }}</p>
+<<<<<<< Updated upstream
+=======
+                        <p> {{ note.tags|tags }}</p>
+>>>>>>> Stashed changes
                         
                     </div>
                 </div>
