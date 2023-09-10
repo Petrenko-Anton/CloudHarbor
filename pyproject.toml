@@ -19,6 +19,7 @@ django-redis = "^5.3.0"
 lxml = "^4.9.3"
 getuseragent = "^0.0.7"
 python-dotenv = "^1.0.0"
+environ = "^1.0"
 
 
 [build-system]
