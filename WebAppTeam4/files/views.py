@@ -74,3 +74,13 @@ def edit(request, file_id):
     file = File.objects.filter(pk=file_id).first()
     return render(request, "files/edit.html",
                   context={"title": "Files", "file": file, "media": settings.MEDIA_ROOT})
+
+# Функція перегляду інфо про файл
+def detail(request, file_id):
+    if request.method == 'GET':
+        description = request.GET.get('description')
+        category = request.GET.get('category')
+
+    file = File.objects.filter(pk=file_id).first()
+    return render(request, "files/edit.html",
+                  context={"title": "Files", "file": file, "media": settings.MEDIA_ROOT})

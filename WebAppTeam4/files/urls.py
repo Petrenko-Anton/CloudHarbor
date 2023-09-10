@@ -10,6 +10,7 @@ urlpatterns = [
     path('upload/', views.upload, name='upload'),
     path('files/', views.files, name='files'),
     path('files/edit/<int:file_id>', views.edit, name='edit'),
+    path('files/view/<int:file_id>', views.detail, name='detail'),
     path('files/remove/<int:file_id>', views.remove, name='remove'),
 ]
 if settings.DEBUG:
