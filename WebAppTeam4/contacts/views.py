@@ -126,11 +126,6 @@ class editcontact(View):
             return render(request, self.template_name, {"form": form, "contact": contact})
 
 
-# def editcontact(request, contact_id):
-#     form_class = ContactForm
-#     contact = Contact.objects.get(pk=contact_id)
-#     return render(request, "contacts/edit.html", {"form": ContactForm(), "contact": contact})
-
 # add contact_id in params
 @method_decorator(login_required, name="dispatch")
 class deletecontact(View):
@@ -147,6 +142,50 @@ class deletecontact(View):
 
 
 @method_decorator(login_required, name="dispatch")
+class contact_search_by_email(View):
+    template_name = "contacts/contacts.html"
+
+    def get(self, request, *args, **kwargs):
+        form = SearchContactEmailForm()
+        return render(request, "contacts/contact_search_by_email.html", {"form": form})
+
+    def post(self, request, *args, **kwargs):
+        form = SearchContactEmailForm(request.POST)
+        if form.is_valid():
+            search_email = form.cleaned_data["search_email"]
+            contacts = (Contact.objects.filter(user=request.user, email=search_email).all(
+            ) if request.user.is_authenticated else [])
+            return render(request, self.template_name, {"contacts": contacts})
+        else:
+            form = SearchContactEmailForm()
+            return render(request, "contacts/contact_search_by_email.html", {"form": form})
+
+
+@method_decorator(login_required, name="dispatch")
+class contact_search_by_name(View):
+    template_name = "contacts/contacts.html"
+
+    def get(self, request, *args, **kwargs):
+        form = SearchContactNameForm()
+        return render(request, "contacts/contact_search_by_name.html", {"form": form})
+
+    def post(self, request, *args, **kwargs):
+        form = SearchContactNameForm(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data["search_name"]
+            contacts = (Contact.objects.filter(user=request.user, first_name=name).all(
+
+            ) if request.user.is_authenticated else [])
+            return render(request, self.template_name, {"contacts": contacts, "form": form})
+        else:
+            form = SearchContactNameForm()
+
+            return render(request, "contacts/contact_search_by_name.html", {"form": form})
+
+            # return render(request, "contacts/error.html", {"message": "Something went wrong"})
+
+
+@method_decorator(login_required, name="dispatch")
 class contact_search(View):
     template_name = "contacts/contacts.html"
 
@@ -160,7 +199,6 @@ class contact_search(View):
         else:
             form = SearchContactNameForm()
             return render(request, "contacts/error.html", {"message": "Something went wrong"})
-
 
 # from Django documentation
 # b = Blog.objects.get(pk=1)
