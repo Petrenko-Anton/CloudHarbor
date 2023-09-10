@@ -36,7 +36,7 @@ class contacts(View):
 
 @method_decorator(login_required, name="dispatch")
 class birthlist(View):
-    template_name = "contacts/contacts.html"
+    template_name = "contacts/birthlist.html"
 
     def get(self, request, *args, **kwargs):
         search_form = SearchContactNameForm()
