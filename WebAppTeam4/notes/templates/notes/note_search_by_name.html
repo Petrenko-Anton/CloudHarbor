@@ -1,0 +1,21 @@
+{% extends "contacts/base.html" %}
+
+{% block content %}
+<a href="{% url 'contacts:contacts' %}" role="button">
+    <svg class="back-icon" xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 0 448 512"><path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg>
+    До списку контактів
+ </a>
+<div class="form-block">
+    <h2>Пошук по імені</h2>
+    <form action="{% url 'notes:search_by_name' %}" method="get">
+        <div>
+            <label class="form-label" for="search_name">
+                <p>Введіть ім'я:</p> 
+                {{form.search_name}}
+            </label>
+        </div>
+        
+        <input class="btn" type="submit" value="Шукати">
+    </form>
+</div>
+{% endblock %}
