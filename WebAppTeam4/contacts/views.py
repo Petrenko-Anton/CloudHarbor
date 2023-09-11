@@ -10,6 +10,7 @@ from django.views import View
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.db.models import Q
+import datetime
 # Create your views here.
 
 
@@ -37,14 +38,26 @@ class contacts(View):
 @method_decorator(login_required, name="dispatch")
 class birthlist(View):
     template_name = "contacts/birthlist.html"
+    week_offset = 7
 
     def get(self, request, *args, **kwargs):
+        today_date = datetime.date.today()
+        day_in_a_week = today_date + datetime.timedelta(days=self.week_offset)
+        month = day_in_a_week.month
+        day = day_in_a_week.day
+
         contacts = (
             Contact.objects.filter(user=request.user).all()
             if request.user.is_authenticated
             else []
         )
-        return render(request, self.template_name, {"contacts": contacts})
+
+        aniversaire_contacts = []
+        for contact in contacts:
+            if contact.birth_date.day == day and contact.birth_date.month == month:
+                aniversaire_contacts.append(contact)
+
+        return render(request, self.template_name, {"contacts": aniversaire_contacts})
 
 
 @method_decorator(login_required, name="dispatch")
@@ -70,8 +83,6 @@ class add_contact(View):
         else:
             # messages.error(request, 'Input error')
             return render(request, self.template_name, {"form": form})
-
-
 
 
 @method_decorator(login_required, name="dispatch")
@@ -122,8 +133,6 @@ class edit_contact(View):
         else:
             # messages.error(request, 'Input error')
             return render(request, self.template_name, {"form": form, "contact": contact})
-
-
 
 
 # add contact_id in params
@@ -185,28 +194,6 @@ class contact_search_by_name(View):
 
             # return render(request, "contacts/error.html", {"message": "Something went wrong"})
 
-
-@method_decorator(login_required, name="dispatch")
-class contact_search(View):
-    template_name = "contacts/contacts.html"
-
-    def get(self, request, *args, **kwargs):
-
-        form = SearchContactNameForm()
-        return render(request, "contacts/contact_search_by_name.html", {"form": form})
-
-    def post(self, request, *args, **kwargs):
-        form = SearchContactNameForm(request.POST)
-        if form.is_valid():
-            name = form.cleaned_data["search_name"]
-            contacts = (Contact.objects.filter(user=request.user, first_name=name).all(
-
-            ) if request.user.is_authenticated else [])
-            return render(request, self.template_name, {"contacts": contacts, "form": form})
-        else:
-            form = SearchContactNameForm()
-
-            return render(request, "contacts/contact_search_by_name.html", {"form": form})
 
 # from Django documentation
 # b = Blog.objects.get(pk=1)
