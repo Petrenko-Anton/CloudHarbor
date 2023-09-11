@@ -5,7 +5,7 @@
 <h1>Upload file</h1>
 <form action="{% url 'files:edit' file.id %}" method="post">
     {% csrf_token %}
-    <img src="{{file.path.url}}" class="card-img-top" alt="file">
+    <img width="350" height="350" src="{{file.path.url}}" alt="file">
     <div class="mb-3">
         <label class="form-label">Опис</label>
         <input type="text" class="form-control" value="{{file.description}}" name="description">
