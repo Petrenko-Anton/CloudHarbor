@@ -7,7 +7,7 @@ from bs4 import BeautifulSoup
 from django.conf import settings
 from django.shortcuts import render
 from django.views.decorators.cache import cache_control
-
+from django.http import HttpResponse
 from .cities import city_dict
 
 headers = {
@@ -135,9 +135,14 @@ def currency():
 
 @cache(ttl=60 * 60 * 2)
 def weather(city):
+    city = city.encode('utf-8').decode('utf-8')
     weather_feed = ReadWeather(settings.WEATHER_API_KEY, city)
     return weather_feed.weather_info
 
+def get_weather(request):
+    city = request.GET.get('city', 'Kиїв')
+    weather_info = weather(city)
+    return HttpResponse(json.dumps(weather_info), content_type='application/json')
 
 
 def news():
@@ -162,6 +167,7 @@ def get_news():
 
 def index(request, city="Kиїв"):
     news_f = get_news()
-    weather_info = weather(city)
+    weather_info = get_weather(request)
     return render(request, 'news/news.html',{'news': news_f, 'city_list': city_list, 'city': city,
                                              'weather_info': weather_info, 'currency_list': currency()})
+
