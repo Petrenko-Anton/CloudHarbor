@@ -46,3 +46,4 @@ def get_file_category(file_name):
         return 'Програма'
     else:
         return 'Інше'
+

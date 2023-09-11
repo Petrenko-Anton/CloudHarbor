@@ -1,5 +1,6 @@
 import os
 import dropbox
+from allauth.socialaccount.providers.oauth.client import OAuthError
 from django.http import FileResponse
 from django.shortcuts import render, redirect
 from django.conf import settings
@@ -69,8 +70,12 @@ def remove(request, file_id):
         os.unlink(os.path.join(settings.MEDIA_ROOT, str(file.path)))
     except OSError as e:
         print(e)
-    dbx.files_delete_v2(file.dropbox_path)
-    file.delete()
+    try:
+        dbx.files_delete_v2(file.dropbox_path)
+        file.delete()
+
+    except OAuthError as e:
+        print(e)
     return redirect(to='files:files')
 
 @login_required()
