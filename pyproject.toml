@@ -23,6 +23,7 @@ redis-lru = "^0.1.2"
 redis = "^5.0.0"
 django-storages = {extras = ["dropbox"], version = "^1.14"}
 django-allauth = "^0.56.1"
+django-cron = "^0.6.0"
 
 
 
