@@ -126,6 +126,9 @@ def files(request):
 @login_required()
 def remove(request, file_id):
     dbx = get_access_dbx(request)
+    if isinstance(dbx, (HttpResponseRedirect, type(None))):
+        print(f'INSTANCE ::::::::::::::: {dbx}')
+        return redirect(to='files:dropbox_oauth')
     file = File.objects.filter(pk=file_id).first()
     print(file_id, file.dropbox_path)
     try:

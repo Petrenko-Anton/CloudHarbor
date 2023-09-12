@@ -13,6 +13,7 @@ import os
 # import django_redis
 from pathlib import Path
 
+import environ
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 
@@ -27,15 +28,14 @@ environ.Env.read_env(BASE_DIR / ".env")
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
-DROP_BOX = env('DROP_BOX')
+
 DROPBOX_APP_KEY = env("DROPBOX_APP_KEY")
 DROPBOX_APP_SECRET = env("DROPBOX_APP_SECRET")
 
 DEBUG = True
 
-
 ALLOWED_HOSTS = ["*"]
-CSRF_TRUSTED_ORIGINS = ["https://small-wood-4302.fly.dev"]
+CSRF_TRUSTED_ORIGINS = ["https://small-wood-4302.fly.dev", 'http://127.0.0.1', "https://blue-fire-7978.fly.dev"]
 
 
 # Application definition

@@ -1,16 +1,14 @@
+import datetime
+
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
-from django.contrib import messages
-from django.core.paginator import Paginator
-from django.http import HttpResponse
+from django.utils.decorators import method_decorator
+from django.views import View
 
 from .forms import ContactForm, SearchContactNameForm, SearchContactEmailForm
 from .models import Contact
-from django.views import View
 
-from django.contrib.auth.decorators import login_required
-from django.utils.decorators import method_decorator
-from django.db.models import Q
-import datetime
+
 # Create your views here.
 
 
@@ -54,7 +52,7 @@ class birthlist(View):
 
         aniversaire_contacts = []
         for contact in contacts:
-            if contact.birth_date.day == day and contact.birth_date.month == month:
+            if today_date.day <= contact.birth_date.day <= day and contact.birth_date.month == month:
                 aniversaire_contacts.append(contact)
 
         return render(request, self.template_name, {"contacts": aniversaire_contacts})
