@@ -78,7 +78,6 @@ def get_access_dbx(request):
 
     return dbx
 
-
 @login_required()
 def upload(request):
     form = FileForm(instance=File())

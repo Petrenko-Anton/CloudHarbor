@@ -47,10 +47,6 @@ footer {
 
 }
 
-.fa .fa-solid{
-  font-size: 18px;
-}
-
 .main-content {
   background: var(--content-block);
   min-height: 820px;
@@ -92,17 +88,9 @@ footer {
   border-bottom: 1px solid var(--border-bottom);
 }
 
-.form-check-input {
-  cursor: pointer;
-}
-
-.form-check-input:checked {
-  background-color: #6EA8FE;
-  border-color: #6EA8FE;
-}
-
 .done-icon {
   fill: #20C997;
+  background-color: #ffffff;
 }
 
 .file-icon, .card-icon {
@@ -132,12 +120,11 @@ footer {
 }
 
 .card {
-  height: 200px;
+  height: 250px;
   margin-bottom: 24px;
 }
 
 .card .btn {
-  height: auto;
   padding: 0px 4px;
   cursor: pointer;
   margin-left: 5px;
@@ -153,8 +140,15 @@ footer {
 
 .card-body {
   color: #000;
-  background-color: #CFE2FF;
-  border: 0.5px solid #9EC5FE;
+  background-color: #ffffff;
+  border: 0.5px solid #992c85;
+  box-shadow: 0 .125rem .25rem rgba(0,0,0,.075)!important;
+}
+
+.card-done {
+  color: #000;
+  background-color: #c4c4c4;
+  border: 0.5px solid #992c85;
   box-shadow: 0 .125rem .25rem rgba(0,0,0,.075)!important;
 }
 
@@ -164,7 +158,7 @@ footer {
 
 .card-body .row {
   padding: 4px;
-  border-bottom: 1px solid #9EC5FE;
+  border-bottom: 1px solid #d0d6e0;
 }
 
 .card-text {
@@ -202,4 +196,32 @@ footer {
 
 .weather-details {
   margin-top: 12px;
+}
+
+.tag-button {
+  background-color: #9b6df2;
+  border: 1px solid var(--button-color);
+  border-radius: 5px;
+  padding: 16px;
+  margin: 5px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.tag-button:hover {
+  color: #343A40;
+}
+
+.tag-link-block {
+  background-color: #992c85;
+  padding: 0px 8px;
+  bottom: 0;
+}
+
+.tag-link-block a {
+  color: #ffffff;
+  font-weight: 500;
+  text-decoration: underline;
 }
