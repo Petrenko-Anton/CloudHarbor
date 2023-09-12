@@ -15,7 +15,6 @@ import os
 from pathlib import Path
 
 
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 from django.core.files.storage import storages
 
@@ -33,8 +32,8 @@ SECRET_KEY = env('SECRET_KEY')
 DROP_BOX = env('DROP_BOX')
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ["*"]
+CSRF_TRUSTED_ORIGINS = ["https://small-wood-4302.fly.dev"]
 
 # Application definition
 
@@ -98,9 +97,9 @@ DATABASES = {
 }
 
 
-REDIS_HOST=env('REDIS_HOST')
-REDIS_PORT=env('REDIS_PORT')
-REDIS_PASSWORD=env('REDIS_PASSWORD')
+REDIS_HOST = env('REDIS_HOST')
+REDIS_PORT = env('REDIS_PORT')
+REDIS_PASSWORD = env('REDIS_PASSWORD')
 
 
 # Password validation
