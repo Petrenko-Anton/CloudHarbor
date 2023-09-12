@@ -9,14 +9,12 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
-import environ
 import os
 # import django_redis
 from pathlib import Path
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-from django.core.files.storage import storages
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -30,10 +28,15 @@ environ.Env.read_env(BASE_DIR / ".env")
 SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DROP_BOX = env('DROP_BOX')
+DROPBOX_APP_KEY = env("DROPBOX_APP_KEY")
+DROPBOX_APP_SECRET = env("DROPBOX_APP_SECRET")
+
 DEBUG = True
+
 
 ALLOWED_HOSTS = ["*"]
 CSRF_TRUSTED_ORIGINS = ["https://small-wood-4302.fly.dev"]
+
 
 # Application definition
 

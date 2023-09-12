@@ -16,15 +16,9 @@
               </svg>
             </a>
               <form action="{% url 'contacts:contact_search_by_name' %}" method="get">
-                  
-                <!---<label class="form-label">{{form.search_name}}</label>
-                <span>{{form.errors.search_name}}</span> --->
                 <input class="btn-main" type="submit"  value="Пошук по імені" name="search_name" maxlength="100"  aria-label="Search">
               </form>
               <form action="{% url 'contacts:contact_search_by_email' %}" method="get">
-                  
-                <!---<label class="form-label">{{form.search_name}}</label>
-                <span>{{form.errors.search_name}}</span> --->
                 <input class="btn-main" type="submit"  value="Пошук по email" name="search_name" maxlength="100"  aria-label="Search">
               </form>
           </div>
@@ -72,7 +66,6 @@
               {% endfor %}
             </tbody>
           </table>
-          
       </div>
     {% endif %}
 {% endblock %}
