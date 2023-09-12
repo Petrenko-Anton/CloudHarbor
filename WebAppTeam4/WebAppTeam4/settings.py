@@ -28,9 +28,9 @@ environ.Env.read_env(BASE_DIR / ".env")
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
-DROP_BOX = env('DROP_BOX')
-DROPBOX_APP_KEY = env("DROPBOX_APP_KEY")
-DROPBOX_APP_SECRET = env("DROPBOX_APP_SECRET")
+#DROP_BOX = env('DROP_BOX')
+#DROPBOX_APP_KEY = env("DROPBOX_APP_KEY")
+#DROPBOX_APP_SECRET = env("DROPBOX_APP_SECRET")
 
 DEBUG = True
 
