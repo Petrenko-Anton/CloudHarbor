@@ -13,7 +13,6 @@ import os
 # import django_redis
 from pathlib import Path
 
-import environ
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 
@@ -34,7 +33,10 @@ DROPBOX_APP_SECRET = env("DROPBOX_APP_SECRET")
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+
+ALLOWED_HOSTS = ["*"]
+CSRF_TRUSTED_ORIGINS = ["https://small-wood-4302.fly.dev"]
+
 
 # Application definition
 
@@ -98,9 +100,9 @@ DATABASES = {
 }
 
 
-REDIS_HOST=env('REDIS_HOST')
-REDIS_PORT=env('REDIS_PORT')
-REDIS_PASSWORD=env('REDIS_PASSWORD')
+REDIS_HOST = env('REDIS_HOST')
+REDIS_PORT = env('REDIS_PORT')
+REDIS_PASSWORD = env('REDIS_PASSWORD')
 
 
 # Password validation
