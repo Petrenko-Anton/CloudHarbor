@@ -127,3 +127,8 @@ def note_search_page(request):
 def tags_page(request):
     tags = Tag.objects.filter(user=request.user).all()
     return render(request, "notes/tags.html", {"tags": tags})
+
+def tagnotes(request, tag_id):
+    tag = get_object_or_404(Tag, pk=tag_id, user=request.user)
+    notes = Note.objects.filter(tags=tag, user=request.user).all()
+    return render(request, "notes/tagnotes.html", {"notes": notes, "tag": tag})
