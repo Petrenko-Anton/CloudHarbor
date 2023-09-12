@@ -45,7 +45,7 @@ class birthlist(View):
         day_in_a_week = today_date + datetime.timedelta(days=self.week_offset)
         month = day_in_a_week.month
         day = day_in_a_week.day
-
+        print(day, month)
         contacts = (
             Contact.objects.filter(user=request.user).all()
             if request.user.is_authenticated
