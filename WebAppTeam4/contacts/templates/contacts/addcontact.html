@@ -13,7 +13,7 @@
    <form  method='post' action="{% url 'contacts:addcontact' %}">
       {% csrf_token %}
       <div>
-         <label  class="form-label">Ім'я
+         <label class="form-label">Ім'я
             {{form.first_name}}
          </label>
          <span>{{form.errors.first_name}}</span>

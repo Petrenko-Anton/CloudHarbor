@@ -123,3 +123,7 @@ def search_by_name(request):
 def note_search_page(request):
     form = SearchNoteForm()
     return render(request, "notes/note_search_by_name.html", {"form": form})
+
+def tags_page(request):
+    tags = Tag.objects.filter(user=request.user).all()
+    return render(request, "notes/tags.html", {"tags": tags})

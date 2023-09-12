@@ -39,7 +39,8 @@ class ContactForm(ModelForm):
         fields = ('first_name', 'last_name', 'email', 'phone', 'birth_date', 'description')
 
 class SearchContactNameForm(forms.Form):
-    search_name = forms.CharField(label="search_name", max_length=100)
+    search_name = forms.CharField(label="search_name", max_length=100, required=True,
+                                    widget=TextInput(attrs={'class': "form-control"}))
 
 class SearchContactEmailForm(forms.Form):
     search_email = forms.EmailField(max_length=100, required=True,

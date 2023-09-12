@@ -54,7 +54,7 @@
                       <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                      <p>Після підтвердження дані буде видалено зі списку контактів. Ви впевнені, що хочете видалити інформацію про контакт?</p>
+                      <p>Після підтвердження дані {{contact.id}} буде видалено зі списку контактів. Ви впевнені, що хочете видалити інформацію про контакт?</p>
                     </div>
                     <div class="modal-footer mx-auto">
                       <a href="{% url 'contacts:deletecontact' contact.id %}" type="button" class="btn">Так</a>

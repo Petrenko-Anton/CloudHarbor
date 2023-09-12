@@ -13,4 +13,5 @@ urlpatterns = [
     path("edit_note/<int:note_id>", views.edit_note, name="edit_note"),
     path("search_my_name", views.search_by_name, name="search_by_name"),
     path("note_search_page", views.note_search_page, name="note_search_page"),
+    path("tags/", views.tags_page, name="tags_page")
 ]
