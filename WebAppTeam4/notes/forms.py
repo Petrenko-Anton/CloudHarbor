@@ -5,7 +5,7 @@ from django import forms
 
 class TagForm(ModelForm):
     name = CharField(min_length=3, max_length=25,
-                     required=True, widget=TextInput())
+                     required=True, widget=TextInput(attrs={'class': "form-control"}))
 
     class Meta:
         model = Tag
@@ -14,9 +14,9 @@ class TagForm(ModelForm):
 
 class NoteForm(ModelForm):
     name = CharField(min_length=5, max_length=50,
-                     required=True, widget=TextInput())
+                     required=True, widget=TextInput(attrs={'class': "form-control"}))
     description = CharField(
-        min_length=10, max_length=150, required=True, widget=TextInput()
+        min_length=10, max_length=150, required=True, widget=TextInput(attrs={'class': "form-control"})
     )
 
     class Meta:
@@ -26,4 +26,4 @@ class NoteForm(ModelForm):
 
 
 class SearchNoteForm(forms.Form):
-    search_name = CharField(max_length=50, widget=TextInput())
+    search_name = CharField(max_length=50, widget=TextInput(attrs={'class': "form-control"}))

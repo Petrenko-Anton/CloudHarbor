@@ -1,15 +1,50 @@
-{% extends "contacts/base.html" %} {% load extract_tags %} {% block content %}
+{% extends 'contacts/base.html' %} {% load extract_tags %}
 
-<h1>{{note.name}}</h1>
-<p>Description: <b>{{note.description}}</b></p>
-<p>Time of creation: <kbd>{{note.created|date:"y-m-d h:i A"}}</kbd></p>
-{% if note.done %}
-<p>
-  Status:
-  <ins>Completed</ins>
-</p>
-{% else %}
-<p>Status: <i>Not implemented</i></p>
-{% endif %}
-<p>Tags: <small> {{ note.tags|tags }} </small></p>
+{% block content %}
+<a href="/notes/notes/" role="button">
+  <svg class="back-icon" xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 0 448 512"><path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg>
+  До списку нотатків
+</a>
+    <br/>
+    <br/>
+    <h1>Деталі про нотатку</h1>
+    <br/>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th scope="col">Параметри</th>
+                <th scope="col">Дані</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Назва</td>
+                <td>{{note.name}}</td>
+            </tr>
+            <tr>
+                <td>Опис</td>
+                <td>{{note.description}}</td>
+            </tr>
+            <tr>
+                <td>Статус</td>
+                {% if note.done %}
+                  <td>виконано</td>
+                {% else %}
+                  <td>не виконано</td>
+                {% endif %}
+            </tr>
+            <tr>
+                <td>Теги</td>
+                <td>
+                  {% for tag in note.tags.all %}
+                      <a class="tag-link" style="text-decoration: underline;" href="{% url 'notes:tagnotes' tag.id %}">{{ tag.name }}</a>
+                  {% endfor %}
+                </td>
+            </tr>
+            <tr>
+                <td>Дата створення:</td>
+                <td>{{note.created|date:"d-m-y h:i A"}}</td>
+            </tr>
+        </tbody>
+    </table>  
 {% endblock %}

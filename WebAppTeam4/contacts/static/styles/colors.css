@@ -1,14 +1,17 @@
 :root {
-    --main-bg-color: #f6f6f6;
+    --main-bg-color: #ffffff;
     --text-color: #000000;   
     --link-color: #992c85;   
     --hover-link-color: #992c85;
+    --link-text-color: #ffffff;
 
     --navbar-bg: #343A40;
     --navbar-color: #ffffff;
     --navbar-hover: #f6f6f6;
 
     --content-block: #ffffff;
+    --card-bg-color: #992c85;
+    --card-border: #992c85;
 
     --button-color:  #e6e6fa;
     --button-hover: #ffffff;
@@ -19,4 +22,12 @@
     
     --footer-bg: #343A40;
     --footer-color: #ffffff;
+
+    --i-color: #ffffff;
+    --main-icon: #343A40;
+    --done-icon: #20C997;
+
+    --form-border: #ced4da;
+    --tag-btn-color: #9b6df2;
+
   }

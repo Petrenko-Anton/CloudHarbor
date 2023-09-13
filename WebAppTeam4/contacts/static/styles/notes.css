@@ -1,0 +1,41 @@
+
+.card {
+    height: 250px;
+    margin-bottom: 24px;
+}
+  
+.card .btn {
+    padding: 0px 4px;
+    cursor: pointer;
+    margin-left: 5px;
+}
+  
+.card .btn:hover {
+    background-color: var(--card-bg-color);
+}
+  
+.card-text {
+    padding-bottom: 12px;
+}
+  
+.card-body {
+    color: var(--text-color);
+    background-color: var(--main-bg-color);
+    border: 0.5px solid var(--card-border);
+    box-shadow: 0 .125rem .25rem rgba(0,0,0,.075)!important;
+}
+  
+.card-body .col-4 {
+    padding: 0;
+}
+  
+.card-body .row {
+    padding: 4px;
+    border-bottom: 1px solid var(--border-bottom);
+}
+  
+.card-text {
+    padding-top: 12px;
+    min-height: 80px;
+}
+  
