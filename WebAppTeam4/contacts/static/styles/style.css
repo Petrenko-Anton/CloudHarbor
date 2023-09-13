@@ -225,3 +225,7 @@ footer {
   font-weight: 500;
   text-decoration: underline;
 }
+
+.custom-tooltip {
+  --bs-tooltip-bg: var(--bs-primary);
+}
