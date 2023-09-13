@@ -1,10 +1,10 @@
 import datetime
 
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.utils.decorators import method_decorator
 from django.views import View
-from django.contrib import messages
 
 from .forms import ContactForm, SearchContactNameForm, SearchContactEmailForm
 from .models import Contact
@@ -51,11 +51,8 @@ class birthlist(View):
 
 
     def get(self, request, *args, **kwargs):
-        week_offset = self.week_offset
         today_date = datetime.date.today()
         day_in_a_week = today_date + datetime.timedelta(days=self.week_offset)
-        month = day_in_a_week.month
-        day = day_in_a_week.day
         contacts = (
             Contact.objects.filter(user=request.user).all()
             if request.user.is_authenticated
@@ -64,7 +61,10 @@ class birthlist(View):
 
         aniversaire_contacts = []
         for contact in contacts:
-            if today_date.day <= contact.birth_date.day <= day and contact.birth_date.month == month:
+
+            birth = datetime.date(today_date.year, contact.birth_date.month, contact.birth_date.day)
+
+            if today_date <= birth <= day_in_a_week:
                 aniversaire_contacts.append(contact)
 
         return render(request, self.template_name, {"contacts": aniversaire_contacts})

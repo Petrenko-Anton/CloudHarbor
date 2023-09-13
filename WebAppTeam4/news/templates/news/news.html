@@ -150,18 +150,21 @@
                 </div>
                 <br/>
                 <div class="siLinks">
-                    <a class="read-more-link" target="_blank" href="https://ua.sinoptik.ua/погода-львів">На сьогодні</a>
-                    <a class="read-more-link" target="_blank" href="https://ua.sinoptik.ua/погода-львів/завтра"> завтра</a>
-                    <a class="read-more-link" target="_blank" href="https://ua.sinoptik.ua/погода-львів/10-днів"> 10 днів</a>
-                    <a class="read-more-link" target="_blank" href="https://ua.sinoptik.ua/україна"> в інших містах</a></div>
+                    <a class="read-more-link" target="_blank" href="https://ua.sinoptik.ua/погода-Київ">На сьогодні</a>
+                    <a class="read-more-link" target="_blank" href="https://ua.sinoptik.ua/погода-Київ/завтра">
+                        завтра</a>
+                    <a class="read-more-link" target="_blank" href="https://ua.sinoptik.ua/погода-Київ/10-днів"> 10
+                        днів</a>
+                    <a class="read-more-link" target="_blank" href="https://ua.sinoptik.ua/україна"> в інших містах</a>
                 </div>
             </div>
         </div>
     </div>
+    </div>
     <script>
         function getWeather(selectedCity) {
             var xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function() {
+            xhttp.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
                     document.getElementById('weather-details').innerHTML = this.responseText;
                 }
