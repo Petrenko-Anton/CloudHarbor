@@ -1,0 +1,26 @@
+.done-icon {
+    fill: var(--done-icon);
+    background-color: var(--main-bg-color);
+}
+  
+.file-icon, .card-icon {
+    fill: var(--main-icon);
+}
+  
+.event-icon {
+    fill: var(--main-icon);
+    padding-left: 8px;
+}
+  
+back-icon {
+    fill: var(--main-icon);
+    padding-right: 8px;
+}
+
+.login-icon {
+    fill: var(--i-color);
+}
+  
+.card-icon:hover, .file-icon:hover, .event-icon:hover, .back-icon:hover, .login-icon:hover {
+    fill: var(--link-color);
+}

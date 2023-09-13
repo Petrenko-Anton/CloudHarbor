@@ -30,7 +30,7 @@ p, span, a {
 
 i {
     font-family: 'Arial Narrow', Arial, sans-serif;
-    color: #fff;
+    color: var(--i-color);
 }
 
 a {

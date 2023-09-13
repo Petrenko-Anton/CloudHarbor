@@ -11,7 +11,7 @@
     text-align: center;
     padding-bottom: 4px;
     margin-bottom: 16px;
-    border-bottom: 1px solid #ced4da;
+    border-bottom: 1px solid var(--form-border);
   }
   
   .form-control {
@@ -27,7 +27,7 @@
   }
 
   .form-label select {
-    border: 1px solid #ced4da;
+    border: 1px solid var(--form-border);
     height: 40px;
     border-radius: 4px;
     margin-right: 6px;
@@ -41,7 +41,7 @@
   }
 
   .form-label input {
-    border: 1px solid #ced4da;
+    border: 1px solid var(--form-border);
     height: 40px;
     border-radius: 4px;
     margin-right: 6px;
@@ -56,7 +56,7 @@
   }
 
   .search-form {
-    border: 1px solid #ced4da;
+    border: 1px solid var(--form-border);
     border-radius: 4px;
     margin-right: 6px;
     margin-top: 6px;

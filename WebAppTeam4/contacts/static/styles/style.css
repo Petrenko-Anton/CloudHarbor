@@ -1,8 +1,10 @@
 @import url(colors.css);
+@import url(icons.css);
 @import url(text.css);
 @import url(navbar.css);
 @import url(forms.css);
 @import url(buttons.css);
+@import url(notes.css);
 
 
 html {
@@ -15,16 +17,16 @@ html {
   
 body {
   font-size: 16px;
-  background: #ffffff;
+  background: var(--main-bg-color);
   margin-bottom: 60px;
   height: 100%;
-  }
+}
 
 .container {
   min-width: 320px;
   max-width: 1300px;
   min-height: 100%;
-  background: #ffffff;
+  background: var(--main-bg-color);
   padding: 0;
 }
 
@@ -43,8 +45,7 @@ footer {
   flex: 0 0 auto;
   display: flex;
   justify-content: center;
-  align-items: center;
-
+  align-items: center
 }
 
 .main-content {
@@ -54,23 +55,11 @@ footer {
   font-family: 'Montserrat', sans-serif;
 }
 
-
 .welcome-block {
   padding: 0;
   margin-left: 5%;
   margin-top: 8%;
   text-align: center;
-}
-
-.banner-block {
-  min-height: 320px;
-  background-image: url("../img/slider/slider-1.jpg");
-  padding: 30px;
-  border: 1px solid var(--main-border);
-}
-
-.about-block {
-  padding: 24px 40px;
 }
 
 .row {
@@ -88,84 +77,6 @@ footer {
   border-bottom: 1px solid var(--border-bottom);
 }
 
-.done-icon {
-  fill: #20C997;
-  background-color: #ffffff;
-}
-
-.file-icon, .card-icon {
-  fill: #343A40;
-}
-
-.event-icon {
-  fill: #343A40;
-  padding-left: 8px;
-}
-
-.back-icon {
-  fill: #343A40;
-  padding-right: 8px;
-}
-
-.card-icon:hover, .file-icon:hover, .event-icon:hover, .back-icon:hover {
-  fill: var(--link-color);
-}
-
-.login-icon {
-  fill: #ffffff;
-}
-
-.card-icon:hover, .login-icon:hover{
-  fill: var(--link-color);
-}
-
-.card {
-  height: 250px;
-  margin-bottom: 24px;
-}
-
-.card .btn {
-  padding: 0px 4px;
-  cursor: pointer;
-  margin-left: 5px;
-}
-
-.card .btn:hover {
-  background-color: #992c85;
-}
-
-.card-text {
-  padding-bottom: 12px;
-}
-
-.card-body {
-  color: #000;
-  background-color: #ffffff;
-  border: 0.5px solid #992c85;
-  box-shadow: 0 .125rem .25rem rgba(0,0,0,.075)!important;
-}
-
-.card-done {
-  color: #000;
-  background-color: #c4c4c4;
-  border: 0.5px solid #992c85;
-  box-shadow: 0 .125rem .25rem rgba(0,0,0,.075)!important;
-}
-
-.card-body .col-4 {
-  padding: 0;
-}
-
-.card-body .row {
-  padding: 4px;
-  border-bottom: 1px solid #d0d6e0;
-}
-
-.card-text {
-  padding-top: 12px;
-  min-height: 80px;
-}
-
 .dropdown-toggle {
   margin-bottom: 12px;
 }
@@ -176,22 +87,22 @@ footer {
 }
 
 .filter-file-block .nav-link {
-  color: #992c85;
+  color: var(--link-color);
   text-decoration: underline;
   border: 1px solid #ffffff;
   margin: 0px 8px;
 }
 
 .filter-file-block .nav-link.active {
-  background-color: #992c85;
-  border: 1px solid #992c85;
-  color: #ffffff;
+  background-color: var(--card-bg-color);
+  border: 1px solid var(--card-bg-color);
+  color: var(--link-text-color);
 }
 
 .filter-file-block .nav-link:hover {
-  color: #992c85;
-  border: 1px solid #992c85;
-  background-color: #ffffff;
+  color: var(--link-color);
+  border: 1px solid var(--card-bg-color);
+  background-color: var(--main-bg-color);
 }
 
 .weather-details {
@@ -199,7 +110,7 @@ footer {
 }
 
 .tag-button {
-  background-color: #9b6df2;
+  background-color: var(--tag-btn-color);
   border: 1px solid var(--button-color);
   border-radius: 5px;
   padding: 16px;
@@ -207,21 +118,21 @@ footer {
   text-align: center;
   font-size: 16px;
   font-weight: bold;
-  color: #ffffff;
+  color: var(--link-text-color);
 }
 
 .tag-button:hover {
-  color: #343A40;
+  color: var(--main-icon);
 }
 
 .tag-link-block {
-  background-color: #992c85;
+  background-color: var(--card-bg-color);
   padding: 0px 8px;
   bottom: 0;
 }
 
 .tag-link-block a {
-  color: #ffffff;
+  color: var(--link-text-color);
   font-weight: 500;
   text-decoration: underline;
 }
