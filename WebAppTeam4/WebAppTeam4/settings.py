@@ -28,13 +28,15 @@ environ.Env.read_env(BASE_DIR / ".env")
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
-#DROP_BOX = env('DROP_BOX')
-#DROPBOX_APP_KEY = env("DROPBOX_APP_KEY")
-#DROPBOX_APP_SECRET = env("DROPBOX_APP_SECRET")
+
+DROPBOX_APP_KEY = env("DROPBOX_APP_KEY")
+DROPBOX_APP_SECRET = env("DROPBOX_APP_SECRET")
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
+CSRF_TRUSTED_ORIGINS = ["https://small-wood-4302.fly.dev", 'http://127.0.0.1', "https://blue-fire-7978.fly.dev"]
+
 
 # Application definition
 
@@ -98,9 +100,9 @@ DATABASES = {
 }
 
 
-REDIS_HOST=env('REDIS_HOST')
-REDIS_PORT=env('REDIS_PORT')
-REDIS_PASSWORD=env('REDIS_PASSWORD')
+REDIS_HOST = env('REDIS_HOST')
+REDIS_PORT = env('REDIS_PORT')
+REDIS_PASSWORD = env('REDIS_PASSWORD')
 
 
 # Password validation
