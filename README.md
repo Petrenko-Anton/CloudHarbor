@@ -48,7 +48,7 @@ Personal Assistant web application \
 * python manage.py createsuperuser - create superuser
 * python manage.py runserver - start app
 
-# All th next stats
+# All the next stats
 
 * python manage.py runserver - start app
 

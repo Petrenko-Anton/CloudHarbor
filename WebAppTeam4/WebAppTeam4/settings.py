@@ -35,7 +35,7 @@ DROPBOX_APP_SECRET = env("DROPBOX_APP_SECRET")
 DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
-CSRF_TRUSTED_ORIGINS = ["https://small-wood-4302.fly.dev", 'http://127.0.0.1', "https://blue-fire-7978.fly.dev"]
+CSRF_TRUSTED_ORIGINS = ["https://cloudharbor.fly.dev", 'http://127.0.0.1']
 
 
 # Application definition

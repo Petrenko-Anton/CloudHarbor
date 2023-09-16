@@ -19,7 +19,7 @@ from .utils import get_file_category, get_file_size
 
 DROPBOX_APP_KEY = settings.DROPBOX_APP_KEY
 DROPBOX_APP_SECRET = settings.DROPBOX_APP_SECRET
-REDIRECT_URL = 'http://127.0.0.1:8000/files/'
+REDIRECT_URL = 'https://cloudharbor.fly.dev/files/'
 
 
 def dropbox_oauth(request):
